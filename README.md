@@ -1,5 +1,17 @@
 # STI_projet1
 
+## Définition globale 
+L’application  doit  permettre  la  mise  en  œuvre  d’une  messagerie  électronique  au  sein  d’une 
+entreprise.  Cette  messagerie  sera  une  application  Web  uniquement  se  basant  sur  une  base  de 
+données (pas de SMTP ou autres).  
+La personne chargée du développement de l’application a juste reçu une liste de fonctionnalités et 
+peu  de  temps  pour  la  réalisation.  Le  budget  ne  permet  donc  de  réfléchir  sur  la  sécurité.  Il  est 
+Sécurité des Technologies Internet 
+Projet 1  - 4 -  22.09.2021 
+ 
+attendu qu’une deuxième équipe évalue la sécurité de l’application et la modifie quelques mois plus 
+tard. 
+Même l’environnement dans lequel l’application tourne risque d’être mal sécurisé. 
 
 ## Authentification 
 
