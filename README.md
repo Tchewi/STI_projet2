@@ -66,8 +66,12 @@ o Une validité (boolean, modifiable), actif ou inactif
 
 Commandes :
 `docker run -ti -v "$PWD/site":/usr/share/nginx/ -d -p 8080:80 --name sti_project --hostname sti arubinst/sti:project2018`
+
 `docker exec -u root sti_project service nginx start`
+
 `docker exec -u root sti_project service php5-fpm start`
+
+Accéder à une page : http://localhost:8080/phpliteadmin.php
 
 Si vous utilisez l'image Docker proposée pour le cours, vous pouvez copier directement le repertoire "site" et son contenu (explications dans la donnée du projet).
 
