@@ -44,7 +44,7 @@
 // Please see https://bitbucket.org/phpliteadmin/public/wiki/Configuration for more details
 
 //password to gain access
-$password = 'admin';
+$password = 'grenouille';
 
 //directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
 $directory = false;
@@ -56,8 +56,8 @@ $subdirectories = false;
 //if any of the databases do not exist as they are referenced by their path, they will be created automatically
 $databases = array(
 	array(
-		'path'=> '/usr/share/nginx/databases/database.sqlite',
-		'name'=> 'Database 1'
+		'path'=> '../databases/database.sqlite',
+		'name'=> 'Database_STI'
 	),
 );
 
