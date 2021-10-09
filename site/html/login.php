@@ -1,3 +1,9 @@
+<?php
+session_start();
+session_unset();
+session_destroy();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +28,8 @@
 <input class="button" type="submit" value="Password lost?">
 </form>
 
-<h2>Create account</h2>
-
 <!-- Account creation -->
-<form action="create_account.php" cmethod="post">
-<div>Username</div>
-<input type="text" name="username"><br>
-<div>Password</div>
-<input type="password" name="pwd"><br>
+<form action="account.php" cmethod="post">
 <input class="button" type="submit" value="Create account">
 </form>
 
