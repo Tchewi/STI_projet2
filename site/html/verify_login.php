@@ -28,6 +28,7 @@ $row = $ret->fetchArray(SQLITE3_ASSOC);
 
 $usr = $row['USERNAME'];
 $pwd = $row['PASSWORD'];
+$admin = $row['SATUS'];
 
 if (!$usr) {
     echo 'Invalid login';
@@ -39,6 +40,12 @@ if (!$usr) {
     session_start();
     $_SESSION["valid"] = 1;
     $_SESSION["username"] = $username;
+
+    if($admin = 1) {
+        $_SESSION["admin"] = 1;
+        header("Location: welcome_admin.php");
+    }
+
     header("Location: welcome.php");
 }
 

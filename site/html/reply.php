@@ -13,7 +13,7 @@ if ($_SESSION["valid"] != 1) {
 </head>
  
 <body>
-  <h1>Read page</h1>
+  <h1>Reply</h1>
 
 <?php
 
@@ -31,27 +31,6 @@ if(!$db) {
 
 $id = $_POST['id'];
 
-$sql =<<<EOF
-SELECT * from MESSAGE
-WHERE ID = "$id";
-EOF;
-
-$ret = $db->query($sql);
-
-
-if($ret) {
-
-    while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        echo "Expeditor: ". $row['EXP']. " ";
-        echo "Subject: ". $row['SUBJECT']. " ";
-        echo "Date: ". $row['DATE'] ." ";
-        echo "Text: ". $row['CONTENT'] ." ";
-    }
-
-} else {
-    echo 'No message found';
-}
-
 $db->close();
 
 ?>
@@ -61,7 +40,6 @@ $db->close();
 </form>
 
 <form action="delete.php" method="post">
-<input type="hidden" name="id" value=<?php echo $id; ?>>
 <input type="submit" value="Delete">
 </form>
 
@@ -74,5 +52,3 @@ $db->close();
 </form>
 
 </body>
-</html>
-

@@ -9,12 +9,12 @@ if ($_SESSION["valid"] != 1) {
 
 <html>
 <head>
-  <title>Write message</title>
+  <title>hohui</title>
 </head>
  
 <body>
   <h1>New message</h1>
-
+<!--
 <form action="send_message.php" method="post">
 <div>Destinataire</div>
 <input type="text" name="dest"></br>
@@ -22,19 +22,40 @@ if ($_SESSION["valid"] != 1) {
 <input type="text" name="subject"></br>
 <div>Contenu</div>
 <input type="text" name="content"></br>
-<input type="submit" value="Send"></br>
-
-<form method="post">
-<inpupt type="hidden" name="goHome" value="1">
-<input type="submit" value="Home">
+<input type="submit" value="Send">
 </form>
 
-<?php
+<form action="send_message.php" method="post">
+<div>Destinataire</div> 
+<input type="text" name="dest"><br>
+<div>Sujet</div>
+<input type="text" name="subject"><br>
+<div>Contenu</div>
+<input type="text" name="content"><br>
+<input type="submit" value="login">
+</form>
 
-$true = $_POST['goHome'];
-if($true) {
-    header("Location: welcome.php");
-}
-?>
+
+<form action="welcome.php" method="post">
+<input class="button" type="submit" value="home">
+</form>
+
+-->
+
+<form action="test.php" method="post">
+<div>Destinataire</div>
+<input type="text" name="dest" require></br>
+<div>Sujet</div>
+<input type="text" name="subject"></br>
+<div>Contenu</div>
+<input type="text" name="content"></br>
+<input type="submit" value="Send">
+</form>
+
+<form action="welcome.php" method="post">
+<input class="button" type="submit" value="Home">
+</form>
 
 </body>
+</html>
+

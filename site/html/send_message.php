@@ -5,6 +5,15 @@ if ($_SESSION["valid"] != 1) {
   session_destroy();
   header("Location: login.php");
 }
+?>
+
+<html>
+<head>
+  <title>disaodjsidos</title>
+</head>
+<body>
+
+<?php
 
 class DB extends SQLite3 {
     function __construct()  {
@@ -36,3 +45,8 @@ $db->close();
 header("Location: message.php");
 
 ?>
+
+</body>
+</html>
+
+
