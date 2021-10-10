@@ -32,12 +32,13 @@ $pwd = $row['PASSWORD'];
 if (!$usr) {
     echo 'Invalid login';
 } else if ($password != $pwd) {
-    echo 'fuk';
+    echo 'Invalid login';
 } else {
     //donne une session valide
     $db->close();
     session_start();
     $_SESSION["valid"] = 1;
+    $_SESSION["username"] = $username;
     header("Location: welcome.php");
 }
 

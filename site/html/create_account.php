@@ -8,8 +8,6 @@ class DB extends SQLite3 {
 
 $db = new DB();
 
-$valid = 1;
-
 if(!$db) {
     echo $db->lastErrorMsg();
 }
@@ -22,7 +20,7 @@ if (!$username) {
     //header("Location: account.php");
 
 } else if (!$password){
-    echo 'Failde: Empty password';
+    echo 'Failed: Empty password';
     //header("Location: account.php");
 } else {
 
