@@ -31,8 +31,6 @@ if(!$db) {
 
 $id = $_POST['id'];
 
-echo $id;
-
 $sql =<<<EOF
 SELECT * from MESSAGE
 WHERE ID = "$id";
@@ -63,6 +61,7 @@ $db->close();
 </form>
 
 <form action="delete.php" method="post">
+<input type="hidden" name="id" value=<?php echo $id; ?>>
 <input type="submit" value="Delete">
 </form>
 

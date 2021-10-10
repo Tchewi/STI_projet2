@@ -32,7 +32,7 @@ if ($_SESSION["valid"] != 1) {
 </form>
 
 <form action="login.php" cmethod="post">
-<input class="button" type="submit" value="Unlog">
+<input class="button" type="submit" value="Log out">
 </form>
 
 </body>
