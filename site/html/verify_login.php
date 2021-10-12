@@ -1,17 +1,23 @@
 <?php
+/***
+ * @author  Rébecca Tevaearai
+ * @date    11.10.2021
+ */
 
 $path = "../databases/database.sqlite";
 
 class DB extends SQLite3 {
     function __construct()  {
-        $this->open('../databases/database.sqlite');
+        $this->open("../databases/database.sqlite");
     }
  }
 
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
+    $error = $db->lastErrorMsg();
+    $db->close();
+    header("Location: login.php?error={$error}");
 }
 
 $username = $_POST['username'];
@@ -28,39 +34,43 @@ $row = $ret->fetchArray(SQLITE3_ASSOC);
 
 $usr = $row['USERNAME'];
 $pwd = $row['PASSWORD'];
-$admin = $row['SATUS'];
+$admin = $row['STATUS'];
+$valid = $row['VALIDITY'];
 
+// username doesn't exist
 if (!$usr) {
-    echo 'Invalid login';
+    $db->close();
+    $error = 'Invalid login';
+    header("Location: login.php?error={$error}");
+
+// wrong password
 } else if ($password != $pwd) {
-    echo 'Invalid login';
+    $db->close();
+    $error = 'Invalid login';
+    header("Location: login.php?error={$error}");
+
+// validity = 0
+} else if (!$valid) {
+    $db->close();
+    $error = 'account is desactivate';
+    header("Location: login.php?error={$error}");
+
+// give a valid session and an admin session in case of an admin account
 } else {
-    //donne une session valide
     $db->close();
     session_start();
     $_SESSION["valid"] = 1;
     $_SESSION["username"] = $username;
 
-    if($admin = 1) {
+    if($admin == 1) {
         $_SESSION["admin"] = 1;
         header("Location: welcome_admin.php");
-    }
 
-    header("Location: welcome.php");
+    } else {
+        header("Location: welcome.php");
+    }
 }
 
 $db->close();
 
 ?>
-
-<html>
-<head>
-  <title>Verify login</title>
-</head>
-
-<form action="login.php" cmethod="post">
-<input class="button" type="submit" value="Return to login page">
-</form>
-
-</body>
-</html>

@@ -1,28 +1,42 @@
 <?php
 session_start();
 if ($_SESSION["valid"] != 1) {
-  session_unset();
-  session_destroy();
-  header("Location: login.php");
+    if ($_SESSION["admin"] != 1) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    }
 }
 ?>
 
 <html>
 <head>
-  <title>password</title>
+  <title>User</title>
 </head>
  
 <body>
   <h1>Manage user</h1>
+
+<?php 
+    if( isset($_GET['error'])) {
+        echo $_GET['error'];
+    }
+?>
+
+<br></br>
 
 <form action="add_user.php" method="post">
 <div>Username</div>
 <input type="text" name="username">
 <div>password</div>
 <input type="text" name="password"></br>
-<div>Status (0 = collaborateur, 1 = admin)</div>
-<input type="text" name="admin"></br>
-<input class="button" type="submit" value="Add User">
+<form action="new_status.php" method="post">
+<input type="hidden" name="usr" value="<?php echo $username ?>">
+<input type="radio" name="status" value="0">
+<label>Collaborateur</label><br>
+<input type="radio" name="status" value="1">
+<label>Admin</label><br>
+<input class="button" type="submit" value="Add user">
 </form>
 
 <form action="modify_user.php" method="post">

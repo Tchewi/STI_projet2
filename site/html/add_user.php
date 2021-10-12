@@ -17,35 +17,41 @@ class DB extends SQLite3 {
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
-}
+    $error = $db->lastErrorMsg();
+    header("Location: user.php?error={$error}");
+} else {
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$status = $_POST['admin'];
+$status = $_POST['status'];
 
 if (!$username) {
-    echo 'Failed: Empty username';
-    //header("Location: account.php");
+    $error = 'Failed: Empty username';
+    header("Location: user.php?error={$error}");
 
 } else if (!$password){
-    echo 'Failed: Empty password';
-    //header("Location: account.php");
+    $error = 'Failed: Empty password';
+    header("Location: user.php?error={$error}");
+
 } else {
 
-$sql2 =<<<EOF
+$sql =<<<EOF
 INSERT INTO ACCOUNT (USERNAME,PASSWORD,VALIDITY,STATUS)
-VALUES ("$username", "$password", 1, 0);
+VALUES ("$username", "$password", 1, "$status");
 EOF;
 
-    $ret2 = $db->exec($sql2);
+    $ret = $db->exec($sql);
 
-    if (!$ret2) {
-        echo 'Failed: Username is already taken';
-        //header("Location: account.php");
+    if (!$ret) {
+        $error = 'Failed: Username is already taken';
+        header("Location: user.php?error={$error}");
+
     } else {
-        echo 'Account creation success';
+        $error = 'Account creation success';
+        header("Location: user.php?error={$error}");
     }
+}
+
 }
 
 $db->close();

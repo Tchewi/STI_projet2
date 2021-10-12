@@ -1,4 +1,8 @@
 <?php
+/***
+ * @author  Rébecca Tevaearai
+ * @date    11.10.2021
+ */
 
 class DB extends SQLite3 {
     function __construct()  {

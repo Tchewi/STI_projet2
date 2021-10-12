@@ -8,15 +8,21 @@ session_destroy();
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
 
-     <h2>Login</h2>
+     <h1>Login</h1>
+
+<?php 
+if( isset($_GET['error'])) {
+    echo $_GET['error'];
+}
+?>
+
 
 <!-- Authentication -->
 <form action="verify_login.php" method="post">
-<div>Username</div> 
+<br><div>Username</div> 
 <input type="text" name="username"><br>
 <div>Password</div>
 <input type="password" name="password"><br>
