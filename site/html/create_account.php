@@ -13,54 +13,46 @@ class DB extends SQLite3 {
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
+    $error = $db->lastErrorMsg();
+    $db->close();
+    header("Location: account.php?error={$error}");
 }
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 if (!$username) {
-    echo 'Failed: Empty username';
-    //header("Location: account.php");
+    $db->close();
+    $error = 'Failed: Empty username';
+    header("Location: account.php?error={$error}");
 
 } else if (!$password){
-    echo 'Failed: Empty password';
-    //header("Location: account.php");
+    $db->close();
+    $error = 'Failed: Empty password';
+    header("Location: account.php?error={$error}");
+
 } else {
 
-$sql2 =<<<EOF
+$sql =<<<EOF
 INSERT INTO ACCOUNT (USERNAME,PASSWORD,VALIDITY,STATUS)
 VALUES ("$username", "$password", 1, 0);
 EOF;
 
-    $ret2 = $db->exec($sql2);
+    $ret = $db->exec($sql);
 
-    if (!$ret2) {
-        echo 'Failed: Username is already taken';
-        //header("Location: account.php");
+    if (!$ret) {
+        $db->close();
+        $error = 'Failed: Username is already taken';
+        header("Location: account.php?error={$error}");
+
     } else {
-        echo 'Account creation success';
+        $db->close();
+        $error = 'Account creation success';
+        header("Location: account.php?error={$error}");
     }
 }
 
 $db->close();
 
 ?>
-
-<html>
-<head>
-  <title>create account</title>
-</head>
-<body>
-
-<form action="account.php" cmethod="post">
-<input class="button" type="submit" value="Return to account creation page">
-</form>
-
-<form action="login.php" cmethod="post">
-<input class="button" type="submit" value="Return to login page">
-</form>
-
-</body>
-</html>
 

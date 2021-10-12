@@ -16,6 +16,12 @@ if ($_SESSION["valid"] != 1) {
 <body>
   <h1>Admin home page</h1>
 
+<?php
+  if( isset($_GET['error'])) {
+    echo $_GET['error'];
+  }
+?>
+
 <form action="reception.php" method="post">
 <input type="submit" value="Message reception">
 </form>

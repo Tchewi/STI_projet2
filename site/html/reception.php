@@ -13,7 +13,13 @@ if ($_SESSION["valid"] != 1) {
 </head>
  
 <body>
-  <h1>Reception page</h1>
+  <h1>Reception</h1>
+<br>
+<?php
+  if( isset($_GET['error'])) {
+    echo $_GET['error'];
+  }
+?>
 
 <?php
 
@@ -28,7 +34,9 @@ class DB extends SQLite3 {
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
+    $error = $db->lastErrorMsg();
+    $db->close();
+    header("Location: welcome.php");
 }
 
 $username = $_SESSION['username'];
@@ -44,29 +52,22 @@ $ret = $db->query($sql);
 if($ret) {
 
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        echo "Expeditor: ". $row['EXP']. " ";
-        echo "Subject: ". $row['SUBJECT']. " ";
-        echo "Date: ". $row['DATE'] ." ";
-        echo "ID: ". $row['ID'] ." ";
+        echo "Expeditor: ". $row['EXP']. "<br>";
+        echo "Subject: ". $row['SUBJECT']. "<br>";
+        echo "Date: ". $row['DATE']. " - ". $row['TIME']."<br>";
+
+        echo '<form action="read_message.php" method="post">
+        <input type="hidden" name="id" value="'. $row['ID'] .'">
+        <input type="submit" value="Read">
+        </form>';
     }
-} else {
-    echo 'No message :(';
+
 }
 
 $db->close();
 
 ?>
 
-<br></br>
-<form action="read_message.php" method="post">
-<div>Message ID</div> 
-<input type="text" name="id"><br>
-<input type="submit" value="Read message">
-</form>
-
 <form action="welcome.php" method="post">
 <input type="submit" value="Home">
 </form>
-
-</body>
-</html>

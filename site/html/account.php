@@ -13,9 +13,15 @@ session_destroy();
 
 <h2>Account creation</h2>
 
+<?php
+  if( isset($_GET['error'])) {
+    echo $_GET['error'];
+  }
+?>
+
 <!-- Account creation -->
 <form action="create_account.php" method="post">
-<div>Username</div>
+<br><div>Username</div>
 <input type="text" name="username"><br>
 <div>Password</div>
 <input type="password" name="password"><br>

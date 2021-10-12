@@ -16,6 +16,7 @@ $db = new DB();
 
 if(!$db) {
     echo $db->lastErrorMsg();
+    header("Location: reception.php");
 }
 
 $id = $_POST['id'];

@@ -24,7 +24,9 @@ class DB extends SQLite3 {
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
+    $error = $db->lastErrorMsg();
+    $db->close();
+    header("Location: user.php?error={$error}");
 }
 
 $sql =<<<EOF
@@ -39,6 +41,7 @@ $row = $ret->fetchArray(SQLITE3_ASSOC);
 $usr = $row['USERNAME'];
 
 if (!$usr) {
+    $db->close();
     $error = "User doesn't exist";
     header("Location: user.php?error={$error}");
 } 

@@ -60,7 +60,7 @@ if (!$usr) {
     $db->close();
     session_start();
     $_SESSION["valid"] = 1;
-    $_SESSION["username"] = $username;
+    $_SESSION["username"] = $usr;
 
     if($admin == 1) {
         $_SESSION["admin"] = 1;

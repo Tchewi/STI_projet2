@@ -5,17 +5,6 @@ if ($_SESSION["valid"] != 1) {
   session_destroy();
   header("Location: login.php");
 }
-?>
-
-<html>
-<head>
-  <title>Read message</title>
-</head>
- 
-<body>
-  <h1>Reply</h1>
-
-<?php
 
 class DB extends SQLite3 {
     function __construct()  {
@@ -26,21 +15,43 @@ class DB extends SQLite3 {
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
+  $error = $db->lastErrorMsg();
+  $db->close();
+  header("Location: reception.php?error={$error}");
 }
 
-$id = $_POST['id'];
+$dest = $_POST['dest'];
 
 $db->close();
 
 ?>
 
-<form action="reply.php" method="post">
-<input type="submit" value="Reply">
-</form>
+<html>
+<head>
+  <title>Read message</title>
+</head>
+ 
+<body>
+  <h1>Reply to <?php echo $dest ?></h1>
 
-<form action="delete.php" method="post">
-<input type="submit" value="Delete">
+<?php
+  if (isset($_GET['error'])) {
+    echo $_GET['error'];
+  }
+  
+  echo "<br>";
+
+?>
+
+
+
+<form action="send_reply.php" method="post">
+<input type="hidden" name="dest" value="<?php echo $dest ?>"></br>
+<div>Sujet</div>
+<input type="text" name="subject"></br>
+<div>Contenu</div>
+<input type="text" name="content" size="50"></br>
+<input type="submit" value="Reply">
 </form>
 
 <form action="reception.php" method="post">

@@ -9,46 +9,25 @@ if ($_SESSION["valid"] != 1) {
 
 <html>
 <head>
-  <title>hohui</title>
+  <title>new message</title>
 </head>
  
 <body>
   <h1>New message</h1>
-<!--
-<form action="send_message.php" method="post">
-<div>Destinataire</div>
-<input type="text" name="dest"></br>
-<div>Sujet</div>
-<input type="text" name="subject"></br>
-<div>Contenu</div>
-<input type="text" name="content"></br>
-<input type="submit" value="Send">
-</form>
+
+<?php
+  if (isset($_GET['error'])) {
+    echo $_GET['error'];
+  }
+?>
 
 <form action="send_message.php" method="post">
-<div>Destinataire</div> 
-<input type="text" name="dest"><br>
-<div>Sujet</div>
-<input type="text" name="subject"><br>
-<div>Contenu</div>
-<input type="text" name="content"><br>
-<input type="submit" value="login">
-</form>
-
-
-<form action="welcome.php" method="post">
-<input class="button" type="submit" value="home">
-</form>
-
--->
-
-<form action="test.php" method="post">
 <div>Destinataire</div>
 <input type="text" name="dest" require></br>
 <div>Sujet</div>
 <input type="text" name="subject"></br>
 <div>Contenu</div>
-<input type="text" name="content"></br>
+<input type="text" name="content" size="50"></br>
 <input type="submit" value="Send">
 </form>
 
