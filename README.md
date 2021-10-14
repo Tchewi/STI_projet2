@@ -14,7 +14,7 @@ Accéder à la page principale : http://localhost:8080/login.php
 
 ## Important
 
-Il faut ajouter des permissions `read` et `write` pour other au fichier database.sqlite, ainsi que les permissions `read`, `write` et `execute` pour other au dossier database.
+Il faut ajouter des permissions `read` et `write` pour other au fichier `database.sqlite`, ainsi que les permissions `read`, `write` et `execute` pour other au dossier `databases`.
 
 
 Le mot de passe pour phpliteadmin est "admin".
