@@ -1,72 +1,25 @@
 <?php
+/***
+ * @author  Rébecca Tevaearai
+ * @date    11.10.2021
+ */
 
 $path = "../databases/database.sqlite";
 
-//$path = "/home/tevaearai/Documents/HEIG-VD/BA5/STI/Projet1Git/STI_projet1/site/databases/database.sqlite";
-
-/*
-try {
-    $db = new PDO('sqlite:../databases/database.sqlite');
-} catch(PDOException $e) {
-    echo $e->getMessage();
-}
-*/
-
 class DB extends SQLite3 {
     function __construct()  {
-        $this->open('../databases/database.sqlite');
+        $this->open("../databases/database.sqlite");
     }
  }
 
 $db = new DB();
 
 if(!$db) {
-    echo $db->lastErrorMsg();
-}
-/* else {
-    echo "Opened database successfully\n";
-}
-*/
-/*
-
- $sql =<<<EOF
-    CREATE TABLE COMPANY
-    (ID INT PRIMARY KEY     NOT NULL,
-    NAME           TEXT    NOT NULL,
-    AGE            INT     NOT NULL,
-    ADDRESS        CHAR(50),
-    SALARY         REAL);
-EOF;
-
-$ret = $db->exec($sql);
-
-if(!$ret){
- echo $db->lastErrorMsg();
-} else {
- echo "Table created successfully\n";
+    $error = $db->lastErrorMsg();
+    $db->close();
+    header("Location: login.php?error={$error}");
 }
 
-$sql =<<<EOF
-INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
-VALUES (1, 'Paul', 32, 'California', 20000.00 );
-
-INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
-VALUES (2, 'Allen', 25, 'Texas', 15000.00 );
-
-INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
-VALUES (3, 'Teddy', 23, 'Norway', 20000.00 );
-
-INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
-VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );
-EOF;
-
-$ret = $db->exec($sql);
-if(!$ret) {
-echo $db->lastErrorMsg();
-} else {
-echo "Records created successfully\n";
-}
-*/
 $username = $_POST['username'];
 $password = $_POST['password'];
 
@@ -81,26 +34,42 @@ $row = $ret->fetchArray(SQLITE3_ASSOC);
 
 $usr = $row['USERNAME'];
 $pwd = $row['PASSWORD'];
+$admin = $row['STATUS'];
+$valid = $row['VALIDITY'];
 
+// username doesn't exist
 if (!$usr) {
-    echo 'Invalid login';
+    $db->close();
+    $error = 'Invalid login';
+    header("Location: login.php?error={$error}");
+
+// wrong password
 } else if ($password != $pwd) {
-    echo 'fuk';
+    $db->close();
+    $error = 'Invalid login';
+    header("Location: login.php?error={$error}");
+
+// validity = 0
+} else if (!$valid) {
+    $db->close();
+    $error = 'account is desactivate';
+    header("Location: login.php?error={$error}");
+
+// give a valid session and an admin session in case of an admin account
 } else {
-    //donner une session valide
-    header("Location: welcome.php");
-}
+    $db->close();
+    session_start();
+    $_SESSION["valid"] = 1;
+    $_SESSION["username"] = $usr;
 
-/*
-$ret = $db->query($sql);
-while($row = $ret->fetchArray(SQLITE3_ASSOC) ) {
-    echo "USENAME = ". $row['USERNAME'] . "\n";
-    echo "PASSWORD = ". $row['PASSWORD'] ."\n";
-    echo "VALIDITY = ". $row['VALIDITY'] ."\n";
-    echo "STATUS = ".$row['STATUS'] ."\n\n";
-}
+    if($admin == 1) {
+        $_SESSION["admin"] = 1;
+        //header("Location: welcome_admin.php");
 
-*/
+    } 
+        header("Location: welcome.php");
+    }
+
 
 $db->close();
 
