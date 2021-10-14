@@ -12,6 +12,9 @@ Commandes Docker :
 
 Accéder à la page principale : http://localhost:8080/login.php
 
-phpliteadmin.php : une interface d'administration pour la base de données SQLite qui se trouve dans le repertoire databases
+## Important
+
+Il faut ajouter des permissions read et write à other au fichier database.sqlite, ainsi que les permissions read, write et execute à other au dossier database.
+
 
 Le mot de passe pour phpliteadmin est "admin".
