@@ -64,12 +64,12 @@ if (!$usr) {
 
     if($admin == 1) {
         $_SESSION["admin"] = 1;
-        header("Location: welcome_admin.php");
+        //header("Location: welcome_admin.php");
 
-    } else {
+    } 
         header("Location: welcome.php");
     }
-}
+
 
 $db->close();
 

@@ -4,7 +4,7 @@ if ($_SESSION["valid"] != 1) {
   session_unset();
   session_destroy();
   header("Location: login.php");
-} else if ($_SESSION["admin"] = 1) {
+} else if ($_SESSION["admin"] == 1) {
   if( isset($_GET['error'])) {
     header("Location: welcome_admin.php?error={$_GET['error']}");
 

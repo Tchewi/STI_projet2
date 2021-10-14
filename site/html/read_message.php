@@ -47,8 +47,9 @@ $row = $ret->fetchArray(SQLITE3_ASSOC);
 echo "Expeditor: ". $row['EXP']. "<br>";
 echo "Subject: ". $row['SUBJECT']. "<br>";
 echo "Date: ". $row['DATE']. " - ". $row['TIME']."<br>";
-echo "Text:<br><br>". $row['CONTENT']. "<br>";
+//echo "Text:<br><br>". $row['CONTENT']. "<br>";
 echo "<br>";
+echo '<textarea rows="10" cols="50">'. $row['CONTENT']. '</textarea>';
 
 } else {
     $db->close();

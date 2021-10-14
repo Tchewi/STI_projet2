@@ -27,8 +27,8 @@ if ($_SESSION["valid"] != 1) {
 <div>Sujet</div>
 <input type="text" name="subject"></br>
 <div>Contenu</div>
-<input type="text" name="content" size="50"></br>
-<input type="submit" value="Send">
+<textarea name="content" rows="10" cols="50" ></textarea>
+</br><input type="submit" value="Send">
 </form>
 
 <form action="welcome.php" method="post">
