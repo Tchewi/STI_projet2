@@ -1,0 +1,2 @@
+- [x] Ajout d'une page d'index redirigeant vers la page de login
+- [ ] Impossibilité de créer un collaborateur depuis la mage de gestion des utilisateurs
