@@ -37,7 +37,7 @@ if (!$username) {
     $error = 'Failed: Empty password';
     header("Location: user.php?error={$error}");
 
-} else if (!$status) {
+} else if (!isset($_POST['status'])) {
     $db->close();
     $error = 'Failed: No status given';
     header("Location: user.php?error={$error}"); 
