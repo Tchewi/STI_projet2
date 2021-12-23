@@ -10,6 +10,7 @@ if ($_SESSION["valid"] != 1) {
 <html>
 <head>
   <title>new message</title>
+  <link rel="stylesheet" href="style.css">
 </head>
  
 <body>

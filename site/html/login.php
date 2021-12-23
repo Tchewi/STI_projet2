@@ -8,6 +8,7 @@ session_destroy();
 <html>
 <head>
   <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@ if( isset($_GET['error'])) {
 <input type="text" name="username"><br>
 <div>Password</div>
 <input type="password" name="password"><br>
-<input type="submit" value="login">
+<input class="button" type="submit" value="login">
 </form>
 
 <!-- Lost password -->

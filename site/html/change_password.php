@@ -10,6 +10,7 @@ if ($_SESSION["valid"] != 1) {
 <html>
 <head>
   <title>password</title>
+  <link rel="stylesheet" href="style.css">
 </head>
  
 <body>

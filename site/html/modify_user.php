@@ -54,6 +54,7 @@ unset($db);
 <html>
 <head>
   <title>modify user</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

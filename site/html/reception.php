@@ -10,6 +10,7 @@ if ($_SESSION["valid"] != 1) {
 <html>
 <head>
   <title>Reception</title>
+  <link rel="stylesheet" href="style.css">
 </head>
  
 <body>
@@ -58,7 +59,7 @@ if($ret) {
 
         echo '<form action="read_message.php" method="post">
         <input type="hidden" name="id" value="'. $row['ID'] .'">
-        <input type="submit" value="Read">
+        <input class="button" type="submit" value="Read">
         </form>';
     }
 
@@ -69,5 +70,5 @@ $db->close();
 ?>
 
 <form action="welcome.php" method="post">
-<input type="submit" value="Home">
+<input class="button" type="submit" value="Home">
 </form>

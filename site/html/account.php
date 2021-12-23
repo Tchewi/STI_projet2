@@ -8,6 +8,7 @@ session_destroy();
 <html>
 <head>
   <title>Account</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

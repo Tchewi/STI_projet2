@@ -29,6 +29,7 @@ $db->close();
 <html>
 <head>
   <title>Read message</title>
+  <link rel="stylesheet" href="style.css">
 </head>
  
 <body>

@@ -69,6 +69,7 @@ $db->close();
 <html>
 <head>
   <title>psdaadw</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
