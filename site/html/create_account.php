@@ -4,15 +4,17 @@
  * @date    11.10.2021
  */
 
-class DB extends SQLite3 {
-    function __construct()  {
+class DB extends SQLite3
+{
+    function __construct()
+    {
         $this->open('../databases/database.sqlite');
     }
 }
 
 $db = new DB();
 
-if(!$db) {
+if (!$db) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: account.php?error={$error}");
@@ -26,14 +28,14 @@ if (!$username) {
     $error = 'Failed: Empty username';
     header("Location: account.php?error={$error}");
 
-} else if (!$password){
+} else if (!$password) {
     $db->close();
     $error = 'Failed: Empty password';
     header("Location: account.php?error={$error}");
 
 } else {
 
-$sql =<<<EOF
+    $sql = <<<EOF
 INSERT INTO ACCOUNT (USERNAME,PASSWORD,VALIDITY,STATUS)
 VALUES ("$username", "$password", 1, 0);
 EOF;

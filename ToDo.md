@@ -7,10 +7,11 @@ Améliorations du code:
 
 Corrections de sécurité
 
-- [ ] XSS:
-    - [ ] Toutes les pages qui utilisent le paramètre GET error est vulnérable à une injection
-    - [ ] read_message.php
-    - [ ] reply.php
+- [x] XSS:
+    - [x] Toutes les pages qui utilisent le paramètre GET error sont vulnérables à une injection
+    - [x] read_message.php
+    - [x] reply.php
+      - solution: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html 
 - [ ] Injections SQL:
     - [ ] read_message.php
     - [ ] préparer TOUTES les requêtes
