@@ -69,7 +69,7 @@ $theme = 'phpliteadmin.css';
 
 // the default language! If you want to change it, save the language file in same folder of phpliteadmin or in folder "languages"
 // More about localizations (downloads, how to translate etc.): https://bitbucket.org/phpliteadmin/public/wiki/Localization
-$language = 'en';
+$language = 'fr';
 
 // set default number of rows. You need to relog after changing the number
 $rowsNum = 30;
