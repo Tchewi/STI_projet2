@@ -15,6 +15,7 @@ Corrections de sécurité
 - [ ] Injections SQL:
     - [ ] read_message.php
     - [ ] préparer TOUTES les requêtes
+      - https://www.php.net/manual/en/sqlite3.prepare.php
 - [ ] CSRF: ajouter des tokens sur tous les formulaires (donc toutes les pages en fait)
 - [ ] Configurer le CORS
 - [ ] Flag HttpOnly sur le cookie de session

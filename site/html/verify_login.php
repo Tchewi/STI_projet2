@@ -28,6 +28,8 @@ SELECT * from ACCOUNT
 WHERE USERNAME = "$username";
 EOF;
 
+
+
 $ret = $db->query($sql);
 
 $row = $ret->fetchArray(SQLITE3_ASSOC);
@@ -37,18 +39,11 @@ $pwd = $row['PASSWORD'];
 $admin = $row['STATUS'];
 $valid = $row['VALIDITY'];
 
-// username doesn't exist
-if (!$usr) {
+// username doesn't exist or wrong password
+if (!$usr || $password != $pwd) {
     $db->close();
     $error = 'Invalid login';
     header("Location: login.php?error={$error}");
-
-// wrong password
-} else if ($password != $pwd) {
-    $db->close();
-    $error = 'Invalid login';
-    header("Location: login.php?error={$error}");
-
 // validity = 0
 } else if (!$valid) {
     $db->close();

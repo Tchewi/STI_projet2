@@ -29,32 +29,26 @@ $username = $_SESSION['username'];
 
 
 if (!$dest) {
-    $db->close();
     $error = 'Failed: Empty Dest';
-    header("Location: new_message.php?error={$error}");
-
 } else {
 
-    $sql = <<<EOF
-INSERT INTO MESSAGE (EXP, DEST, SUBJECT, CONTENT)
-VALUES ("$username", "$dest", "$subject", "$content");
-EOF;
+    $stmt = $db->prepare('INSERT INTO MESSAGE (EXP, DEST, SUBJECT, CONTENT) VALUES (:exp, :dest, :sub, :con)');
+    $stmt->bindValue(":exp", $username);
+    $stmt->bindValue(":dest", $dest);
+    $stmt->bindValue(":sub", $subject);
+    $stmt->bindValue(":con", $content);
 
-    $ret = $db->exec($sql);
+    $ret = $stmt->execute();
 
     if ($ret) {
-        $db->close();
         $error = 'Message send';
-        header("Location: new_message.php?error={$error}");
 
     } else {
-        $db->close();
         $error = 'Something went wrong';
-        header("Location: new_message.php?error={$error}");
     }
 }
 
 $db->close();
-
+header("Location: new_message.php?error={$error}");
 
 ?>

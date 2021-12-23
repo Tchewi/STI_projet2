@@ -28,7 +28,7 @@ if (isset($_GET['error'])) {
     <input type="text" name="username"><br>
     <div>Password</div>
     <input type="password" name="password"><br>
-    <input class="button" type="submit" value="login">
+    <input class="button" type="submit" value="Login">
 </form>
 
 <!-- Lost password -->
