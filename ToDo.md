@@ -20,9 +20,14 @@ Corrections de sécurité
 - [ ] Configurer le CORS
 - [ ] Flag HttpOnly sur le cookie de session
 - [ ] Attribut SameSite sur le cookie de session
-- [ ] X-Powered-By à désactiver  --> serveur
+- [ ] X-Powered-By à désactiver --> serveur
+- [ ] Hasher les mots de passe sur la base de données
+- [ ] Check les redirections
+- [ ] Vérifier la présence des paramètres à récup avec isset(...)
 
+Questions à poser:
 
+- Protéger du XSS stocké avant de stocker ou avant d'afficher ?
 
 Améliorations visuelles:
 
