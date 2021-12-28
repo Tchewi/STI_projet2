@@ -23,12 +23,11 @@ if (!$db) {
 
 $id = $_POST['id'];
 
-$sql = <<<EOF
-DELETE from MESSAGE
-WHERE ID = "$id";
-EOF;
+$stmt = $db->prepare('DELETE from MESSAGE WHERE ID = :id');
+$stmt->bindValue(":id", $id, SQLITE3_INTEGER);
 
-$ret = $db->exec($sql);
+$ret = $stmt->execute();
+
 
 $db->close();
 

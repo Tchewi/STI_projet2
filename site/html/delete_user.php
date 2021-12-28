@@ -24,12 +24,10 @@ if (!$db) {
 
 $username = $_POST['username'];
 
-$sql = <<<EOF
-DELETE from ACCOUNT
-WHERE USERNAME = "$username";
-EOF;
+$stmt = $db->prepare('DELETE from ACCOUNT WHERE USERNAME = :usr');
+$stmt->bindValue(":usr", $username);
 
-$ret = $db->exec($sql);
+$ret = $stmt->execute();
 
 $db->close();
 
@@ -41,4 +39,3 @@ if ($username = $usr) {
 
 header("Location: user.php");
 
-?>

@@ -33,14 +33,11 @@ if (!$db) {
 
     } else {
 
-        $sql = <<<EOF
-UPDATE ACCOUNT 
-SET PASSWORD="$newpass"
-WHERE USERNAME="$username";
-EOF;
+        $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwd WHERE USERNAME=:usr');
+        $stmt->bindValue(":usr", $username);
+        $stmt->bindValue(":pwd", $newpass);
 
-
-        $ret = $db->exec($sql);
+        $ret = $stmt->execute();
 
         if (!$ret) {
             $error = "Operation failed";

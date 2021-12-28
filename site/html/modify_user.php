@@ -8,7 +8,7 @@ if ($_SESSION["valid"] != 1) {
     }
 }
 
-$username = $_POST['username'];
+$username = htmlspecialchars($_POST['username']);
 
 if (!$username) {
     $error = "Empty username";
@@ -31,25 +31,20 @@ if (!$db) {
     header("Location: user.php?error={$error}");
 }
 
-$sql = <<<EOF
-SELECT * from ACCOUNT
-WHERE USERNAME="$username";
-EOF;
+$stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
+$stmt->bindValue(":usr", $username);
 
-$ret = $db->query($sql);
-
+$ret = $stmt->execute();
 $row = $ret->fetchArray(SQLITE3_ASSOC);
 
 $usr = $row['USERNAME'];
 
+$db->close();
+
 if (!$usr) {
-    $db->close();
     $error = "User doesn't exist";
     header("Location: user.php?error={$error}");
 }
-
-$db->close();
-unset($db);
 
 ?>
 

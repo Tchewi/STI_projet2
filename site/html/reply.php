@@ -39,7 +39,8 @@ $db->close();
 
 <?php
 if (isset($_GET['error'])) {
-echo htmlspecialchars($_GET['error']);
+    echo htmlspecialchars($_GET['error']);
+}
 ?>
 
 <form action="send_reply.php" method="post">
