@@ -16,8 +16,12 @@ Corrections de sécurité
 - [ ] Injections SQL:
     - [ ] read_message.php
     - [ ] préparer TOUTES les requêtes
+      - indiquer le type si besoin (par exemple SQLITE3_INTEGER pour les ID) 
       - https://www.php.net/manual/en/sqlite3.prepare.php
 - [ ] CSRF: ajouter des tokens sur tous les formulaires (donc toutes les pages en fait)
+  - sources: 
+    - https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+    - https://www.phptutorial.net/php-tutorial/php-csrf/
 - [ ] Configurer le CORS
 - [ ] Flag HttpOnly sur le cookie de session
 - [ ] Attribut SameSite sur le cookie de session
