@@ -25,25 +25,27 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->LastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: user.php?error={$error}");
 }
+else {
+    $stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
+    $stmt->bindValue(":usr", $username);
 
-$stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
-$stmt->bindValue(":usr", $username);
+    $ret = $stmt->execute();
+    $row = $ret->fetchArray(SQLITE3_ASSOC);
 
-$ret = $stmt->execute();
-$row = $ret->fetchArray(SQLITE3_ASSOC);
+    $usr = $row['USERNAME'];
 
-$usr = $row['USERNAME'];
+    $db->close();
 
-$db->close();
+    if (!$usr) {
+        $error = "User doesn't exist";
+        header("Location: user.php?error={$error}");
+    }
 
-if (!$usr) {
-    $error = "User doesn't exist";
-    header("Location: user.php?error={$error}");
 }
 
 ?>

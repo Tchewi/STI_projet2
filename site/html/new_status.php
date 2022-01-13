@@ -18,9 +18,8 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
-    header("Location: user.php?error={$error}");
 
 } else {
 
@@ -33,23 +32,19 @@ if (!$db) {
         $status = 0;
     }
 
-    $sql = <<<EOF
-UPDATE ACCOUNT 
-SET STATUS="$status"
-WHERE USERNAME="$username";
-EOF;
+    $stmt = $db->prepare('UPDATE ACCOUNT SET STATUS=:status WHERE USERNAME = :usr');
+    $stmt->bindValue(":status", $newstatus);
+    $stmt->bindValue(":usr", $username);
 
-    $ret = $db->exec($sql);
+    $ret = $stmt->execute();
 
     if (!$ret) {
         $error = "Operation failed";
-        header("Location: user.php?error={$error}");
     } else {
         $error = "Status successfully changed";
-        header("Location: user.php?error={$error}");
     }
-
 }
+header("Location: user.php?error={$error}");
 
 $db->close();
 unset($db);

@@ -16,22 +16,21 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     echo $db->lastErrorMsg();
     header("Location: change_password.php");
+    exit;
 }
 
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
 $username = $_SESSION['username'];
 
-$sql = <<<EOF
-SELECT * from ACCOUNT
-WHERE USERNAME="$username";
-EOF;
 
-$ret = $db->query($sql);
+$stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
+$stmt->bindValue(":usr", $username);
 
+$ret = $stmt->execute();
 $row = $ret->fetchArray(SQLITE3_ASSOC);
 
 $pwd = $row['PASSWORD'];
@@ -53,16 +52,18 @@ SET PASSWORD="$newpass"
 WHERE USERNAME="$username";
 EOF;
 
-    $ret2 = $db->exec($sql2);
+    $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwd WHERE USERNAME = :usr');
+    $stmt->bindValue(":pwd", $newpass);
+    $stmt->bindValue(":usr", $username);
+
+    $ret2 = $stmt->execute();
 
     if (!$ret2) {
         echo 'Failed';
-
     } else {
         echo 'Password changed';
     }
 }
-
 
 $db->close();
 

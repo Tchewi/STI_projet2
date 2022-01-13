@@ -36,31 +36,29 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: welcome.php");
+    exit;
 }
 
 $username = $_SESSION['username'];
 
-$sql = <<<EOF
-SELECT * from MESSAGE
-WHERE DEST = "$username"
-ORDER BY ID DESC;
-EOF;
+$stmt = $db->prepare('SELECT * from MESSAGE WHERE DEST = :usr ORDER BY ID DESC');
+$stmt->bindValue(":usr", $username);
 
-$ret = $db->query($sql);
+$ret = $stmt->execute();
 
 if ($ret) {
 
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        echo "Expeditor: " . $row['EXP'] . "<br>";
-        echo "Subject: " . $row['SUBJECT'] . "<br>";
-        echo "Date: " . $row['DATE'] . " - " . $row['TIME'] . "<br>";
+        echo "Expeditor: " . htmlspecialchars($row['EXP']) . "<br>";
+        echo "Subject: " . htmlspecialchars($row['SUBJECT']) . "<br>";
+        echo "Date: " . htmlspecialchars($row['DATE'] . " - " . $row['TIME']) . "<br>";
 
         echo '<form action="read_message.php" method="post">
-        <input type="hidden" name="id" value="' . $row['ID'] . '">
+        <input type="hidden" name="id" value="' . htmlspecialchars($row['ID']) . '">
         <input class="button" type="submit" value="Read">
         </form>';
     }

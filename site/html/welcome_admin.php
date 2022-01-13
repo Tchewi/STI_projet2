@@ -39,7 +39,7 @@ if (isset($_GET['error'])) {
     <input class="button" type="submit" value="Manage user">
 </form>
 
-<form action="login.php" cmethod="post">
+<form action="login.php" method="post">
     <input class="button" type="submit" value="Log out">
 </form>
 

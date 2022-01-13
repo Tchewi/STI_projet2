@@ -14,23 +14,20 @@ class DB extends SQLite3 {
 
 $db = new DB();
 
-if(!$db) {
+if(!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: login.php?error={$error}");
+    exit;
 }
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql =<<<EOF
-SELECT * from ACCOUNT
-WHERE USERNAME = "$username";
-EOF;
+$stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
+$stmt->bindValue(":usr", $username);
 
-
-
-$ret = $db->query($sql);
+$ret = $stmt->execute();
 
 $row = $ret->fetchArray(SQLITE3_ASSOC);
 
@@ -41,26 +38,21 @@ $valid = $row['VALIDITY'];
 
 // username doesn't exist or wrong password
 if (!$usr || $password != $pwd) {
-    $db->close();
     $error = 'Invalid login';
     header("Location: login.php?error={$error}");
 // validity = 0
 } else if (!$valid) {
-    $db->close();
-    $error = 'account is desactivate';
+    $error = 'Account is disabled';
     header("Location: login.php?error={$error}");
 
 // give a valid session and an admin session in case of an admin account
 } else {
-    $db->close();
     session_start();
     $_SESSION["valid"] = 1;
     $_SESSION["username"] = $usr;
 
     if($admin == 1) {
         $_SESSION["admin"] = 1;
-        //header("Location: welcome_admin.php");
-
     } 
         header("Location: welcome.php");
     }
