@@ -16,10 +16,11 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: new_message.php?error={$error}");
+    exit;
 }
 
 $dest = $_POST['dest'];

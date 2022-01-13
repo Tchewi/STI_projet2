@@ -18,23 +18,24 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->LastErrorCode()) {
     echo $db->lastErrorMsg();
 }
+else {
+    $username = $_POST['username'];
 
-$username = $_POST['username'];
+    $stmt = $db->prepare('DELETE from ACCOUNT WHERE USERNAME = :usr');
+    $stmt->bindValue(":usr", $username);
 
-$stmt = $db->prepare('DELETE from ACCOUNT WHERE USERNAME = :usr');
-$stmt->bindValue(":usr", $username);
+    $ret = $stmt->execute();
 
-$ret = $stmt->execute();
+    $db->close();
 
-$db->close();
+    $usr = $_SESSION['username'];
 
-$usr = $_SESSION['username'];
-
-if ($username = $usr) {
-    header("Location: login.php");
+    if ($username = $usr) {
+        header("Location: login.php");
+    }
 }
 
 header("Location: user.php");

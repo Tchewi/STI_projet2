@@ -16,21 +16,25 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     echo $db->lastErrorMsg();
     header("Location: reception.php");
+    exit;
+}
+else {
+    $id = $_POST['id'];
+
+    $stmt = $db->prepare('DELETE from MESSAGE WHERE ID = :id');
+    $stmt->bindValue(":id", $id, SQLITE3_INTEGER);
+
+    $ret = $stmt->execute();
+
+
+    $db->close();
+
+    header("Location: reception.php");
+
 }
 
-$id = $_POST['id'];
-
-$stmt = $db->prepare('DELETE from MESSAGE WHERE ID = :id');
-$stmt->bindValue(":id", $id, SQLITE3_INTEGER);
-
-$ret = $stmt->execute();
-
-
-$db->close();
-
-header("Location: reception.php");
 
 ?>

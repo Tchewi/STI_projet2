@@ -18,10 +18,10 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     header("Location: user.php?error={$error}");
-
+    exit;
 } else {
 
     $newpass = $_POST['new_pass'];

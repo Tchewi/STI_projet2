@@ -16,9 +16,10 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     echo $db->lastErrorMsg();
     header("Location: change_password.php");
+    exit;
 }
 
 $oldpass = $_POST['oldpass'];

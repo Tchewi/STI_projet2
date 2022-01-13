@@ -18,9 +18,8 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
-    header("Location: user.php?error={$error}");
 
 } else {
 
@@ -44,8 +43,8 @@ if (!$db) {
     } else {
         $error = "Status successfully changed";
     }
-    header("Location: user.php?error={$error}");
 }
+header("Location: user.php?error={$error}");
 
 $db->close();
 unset($db);

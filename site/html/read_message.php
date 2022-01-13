@@ -28,10 +28,11 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db) {
+if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: reception.php?error={$error}");
+    exit;
 }
 
 $id = $_POST['id'];
