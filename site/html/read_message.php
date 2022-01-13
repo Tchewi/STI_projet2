@@ -36,12 +36,10 @@ if (!$db) {
 
 $id = $_POST['id'];
 
-$sql = <<<EOF
-SELECT * from MESSAGE
-WHERE ID = "$id";
-EOF;
+$stmt = $db->prepare('SELECT * from MESSAGE WHERE ID = :id');
+$stmt->bindValue(":id", $id, SQLITE3_INTEGER);
 
-$ret = $db->query($sql);
+$ret = $stmt->execute();
 
 if ($ret) {
 

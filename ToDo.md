@@ -13,6 +13,7 @@ Corrections de sécurité
     - [x] reply.php
       - solution: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
     - [ ] XSS stockées : les variables affichées qui proviennent de la DB
+      - On a sécurisé uniquement du côté du client et pas dans la BDD
 - [ ] Injections SQL:
     - [ ] read_message.php
     - [ ] préparer TOUTES les requêtes
@@ -29,6 +30,7 @@ Corrections de sécurité
 - [ ] Hasher les mots de passe sur la base de données
 - [ ] Check les redirections
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
+- [ ] Code exécuté après redirection
 
 Questions à poser:
 

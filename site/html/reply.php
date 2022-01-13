@@ -6,26 +6,7 @@ if ($_SESSION["valid"] != 1) {
     header("Location: login.php");
 }
 
-class DB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../databases/database.sqlite');
-    }
-}
-
-$db = new DB();
-
-if (!$db) {
-    $error = $db->lastErrorMsg();
-    $db->close();
-    header("Location: reception.php?error={$error}");
-}
-
 $dest = $_POST['dest'];
-
-$db->close();
-
 ?>
 
 <html>

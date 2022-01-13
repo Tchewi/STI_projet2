@@ -36,24 +36,21 @@ if (!$db) {
     }
     */
 
-    $sql = <<<EOF
-UPDATE ACCOUNT 
-SET VALIDITY="$new_validity"
-WHERE USERNAME="$username";
-EOF;
+    $stmt = $db->prepare('UPDATE ACCOUNT SET VALIDITY=:val WHERE USERNAME = :usr');
+    $stmt->bindValue(":status", $new_validity);
+    $stmt->bindValue(":usr", $username);
 
-    $ret = $db->exec($sql);
+    $ret = $stmt->execute();
+
 
     if (!$ret) {
-        $db->close();
         $error = "Operation failed";
-        header("Location: user.php?error={$error}");
-
     } else {
-        $db->close();
+
         $error = "Validity successfully changed";
-        header("Location: user.php?error={$error}");
     }
+    $db->close();
+    header("Location: user.php?error={$error}");
 
 }
 

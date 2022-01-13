@@ -50,6 +50,9 @@ WHERE DEST = "$username"
 ORDER BY ID DESC;
 EOF;
 
+$stmt = $db->prepare('SELECT * from MESSAGE WHERE DEST = :usr ORDER BY ID DESC');
+$stmt->bindValue(":usr", $username);
+
 $ret = $db->query($sql);
 
 if ($ret) {
