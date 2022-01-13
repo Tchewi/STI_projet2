@@ -25,6 +25,7 @@ if (!$db->lastErrorCode()) {
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
 $username = $_SESSION['username'];
+$oldPassHash = password_hash($oldpass, PASSWORD_DEFAULT);
 
 
 $stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
@@ -33,12 +34,12 @@ $stmt->bindValue(":usr", $username);
 $ret = $stmt->execute();
 $row = $ret->fetchArray(SQLITE3_ASSOC);
 
-$pwd = $row['PASSWORD'];
+$pwdHash = $row['PASSWORD'];
 
 if (!$oldpass) {
     echo 'Failed: Empty field';
 
-} else if ($pwd != $oldpass) {
+} else if ($pwdHash != $oldPassHash) {
     echo 'wrong password';
 
 } else if (!$newpass) {
@@ -46,14 +47,10 @@ if (!$oldpass) {
 
 } else {
 
-    $sql2 = <<<EOF
-UPDATE ACCOUNT 
-SET PASSWORD="$newpass"
-WHERE USERNAME="$username";
-EOF;
+    $newPassHash = password_hash($newpass, PASSWORD_DEFAULT);
 
-    $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwd WHERE USERNAME = :usr');
-    $stmt->bindValue(":pwd", $newpass);
+    $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwdHash WHERE USERNAME = :usr');
+    $stmt->bindValue(":pwdHash", $newPassHash);
     $stmt->bindValue(":usr", $username);
 
     $ret2 = $stmt->execute();
