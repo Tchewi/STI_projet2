@@ -35,9 +35,11 @@ if (!$db) {
         $error = 'Failed: No status given';
     } else {
 
-        $stmt = $db->prepare('INSERT INTO ACCOUNT (USERNAME, PASSWORD, VALIDITY, STATUS) VALUES (:usr, :pwd, 1, :stat)');
+        $passwdHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $db->prepare('INSERT INTO ACCOUNT (USERNAME, PASSWORD, VALIDITY, STATUS) VALUES (:usr, :pwdHash, 1, :stat)');
         $stmt->bindValue(":usr", $username);
-        $stmt->bindValue(":pwd", $password);
+        $stmt->bindValue(":pwdHash", $passwdHash);
         $stmt->bindValue(":stat", $status);
 
         $ret = $stmt->execute();

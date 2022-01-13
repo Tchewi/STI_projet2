@@ -29,9 +29,11 @@ if (!$username) {
 
 } else {
 
-    $stmt = $db->prepare('INSERT INTO ACCOUNT (USERNAME, PASSWORD, VALIDITY, STATUS) VALUES (:usr, :pwd, 1, 0)');
+    $passwdHash = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt = $db->prepare('INSERT INTO ACCOUNT (USERNAME, PASSWORD, VALIDITY, STATUS) VALUES (:usr, :pwdHash, 1, 0)');
     $stmt->bindValue(":usr", $username);
-    $stmt->bindValue(":pwd", $password);
+    $stmt->bindValue(":pwdHash", $passwdHash);
 
     $ret = $stmt->execute();
 
