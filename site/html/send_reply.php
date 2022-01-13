@@ -18,7 +18,6 @@ $db = new DB();
 
 if (!$db) {
     $error = $db->lastErrorMsg();
-    $db->close();
     header("Location: reply.php?error={$error}");
 }
 
@@ -27,24 +26,21 @@ $subject = $_POST['subject'];
 $content = $_POST['content'];
 $username = $_SESSION['username'];
 
-$sql = <<<EOF
-INSERT INTO MESSAGE (EXP, DEST, SUBJECT, CONTENT)
-VALUES ("$username", "$dest", "$subject", "$content");
-EOF;
+$stmt = $db->prepare('INSERT INTO MESSAGE (EXP, DEST, SUBJECT, CONTENT) VALUES (:usr, :dest, :subj, :content)');
+$stmt->bindValue(":usr", $username);
+$stmt->bindValue(":dest", $dest);
+$stmt->bindValue(":subj", $subject);
+$stmt->bindValue(":content", $content);
 
-$ret = $db->exec($sql);
+$ret = $stmt->execute();
 
 if ($ret) {
-    $db->close();
     $error = 'Message send';
     header("Location: reply.php?error={$error}");
 
 } else {
-    $db->close();
     $error = 'Something went wrong';
     header("Location: reply.php?error={$error}");
 }
 
 $db->close();
-
-?>
