@@ -18,7 +18,7 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db->lastErrorCode()) {
+if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
 
 } else {

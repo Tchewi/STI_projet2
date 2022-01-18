@@ -8,17 +8,15 @@ class DB extends SQLite3
 {
     function __construct()
     {
-        $this->open('../databases/database.sqlite');
+        return $this->open('../databases/database.sqlite');
     }
 }
 
 $db = new DB();
 
-if (!$db->lastErrorCode()) {
+if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
-}
-
-else {
+} else {
     $username = $_POST['username'];
     $password = $_POST['password'];
 

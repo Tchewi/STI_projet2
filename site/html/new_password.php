@@ -16,7 +16,7 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db->lastErrorCode()) {
+if ($db->lastErrorCode()) {
     echo $db->lastErrorMsg();
     header("Location: change_password.php");
     exit;
