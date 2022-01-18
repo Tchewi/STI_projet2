@@ -37,7 +37,7 @@ $admin = $row['STATUS'];
 $valid = $row['VALIDITY'];
 
 // username doesn't exist or wrong password
-if (!$usr || $password != $pwd) {
+if (!$usr || !password_verify($password, $pwd)) {
     $error = 'Invalid login';
     header("Location: login.php?error={$error}");
 // validity = 0

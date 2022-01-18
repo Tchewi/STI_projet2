@@ -25,7 +25,6 @@ if ($db->lastErrorCode()) {
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
 $username = $_SESSION['username'];
-$oldPassHash = password_hash($oldpass, PASSWORD_DEFAULT);
 
 
 $stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
@@ -39,7 +38,7 @@ $pwdHash = $row['PASSWORD'];
 if (!$oldpass) {
     echo 'Failed: Empty field';
 
-} else if ($pwdHash != $oldPassHash) {
+} else if (!password_verify($oldpass, $pwdHash)) {
     echo 'wrong password';
 
 } else if (!$newpass) {
