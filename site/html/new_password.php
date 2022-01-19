@@ -21,7 +21,8 @@ if ($db->lastErrorCode()) {
     header("Location: change_password.php");
     exit;
 }
-
+require_once "utils/utils.php";
+verify_csrf();
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
 $username = $_SESSION['username'];

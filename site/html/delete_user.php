@@ -22,6 +22,8 @@ if ($db->LastErrorCode()) {
     echo $db->lastErrorMsg();
 }
 else {
+    require_once "utils/utils.php";
+    verify_csrf();
     $username = $_POST['username'];
 
     $stmt = $db->prepare('DELETE from ACCOUNT WHERE USERNAME = :usr');

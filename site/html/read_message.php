@@ -1,4 +1,5 @@
 <?php
+require_once "utils/utils.php";
 session_start();
 if ($_SESSION["valid"] != 1) {
     session_unset();
@@ -34,6 +35,8 @@ if ($db->lastErrorCode()) {
     header("Location: reception.php?error={$error}");
     exit;
 }
+require_once "utils/utils.php";
+verify_csrf();
 
 $id = $_POST['id'];
 

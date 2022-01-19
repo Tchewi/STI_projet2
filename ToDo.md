@@ -14,26 +14,26 @@ Corrections de sécurité
       - solution: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
     - [ ] XSS stockées : les variables affichées qui proviennent de la DB
       - On a sécurisé uniquement du côté du client et pas dans la BDD
-- [ ] Injections SQL:
+- [x] Injections SQL:
     - [x] préparer TOUTES les requêtes
       - indiquer le type si besoin (par exemple SQLITE3_INTEGER pour les ID) 
       - https://www.php.net/manual/en/sqlite3.prepare.php
-- [ ] CSRF: ajouter des tokens sur tous les formulaires (donc toutes les pages en fait)
+- [x] CSRF: ajouter des tokens sur tous les formulaires (donc toutes les pages en fait)
   - sources: 
     - https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
     - https://www.phptutorial.net/php-tutorial/php-csrf/
+    - `<input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">`
+    - `verify_csrf()`
+    - [ ] VERIFIER QUE CA FONCTIONNE
 - [ ] Configurer le CORS
 - [ ] Flag HttpOnly sur le cookie de session
 - [ ] Attribut SameSite sur le cookie de session
 - [ ] X-Powered-By à désactiver --> serveur
 - [x] Hasher les mots de passe sur la base de données
-- [ ] Check les redirections
+- [x] Check les redirections
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
-- [ ] Code exécuté après redirection
-
-Questions à poser:
-
-- Protéger du XSS stocké avant de stocker ou avant d'afficher ?
+- [x] Code exécuté après redirection (lorsque erreur de connexion à la DB)
+- [ ] Quand on change de mot de passe on peut voir le mot de passe + pas de double vérif 
 
 Améliorations visuelles:
 

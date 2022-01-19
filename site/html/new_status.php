@@ -22,7 +22,8 @@ if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
 
 } else {
-
+    require_once "utils/utils.php";
+    verify_csrf();
     $newstatus = $_POST['status'];
     $username = $_POST['usr'];
 

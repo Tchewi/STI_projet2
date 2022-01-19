@@ -21,6 +21,13 @@ if($db->lastErrorCode()) {
     exit;
 }
 
+session_start();
+require_once "utils/utils.php";
+verify_csrf();
+
+session_unset(); // in order to create new one and invalidate csrf
+session_destroy();
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 

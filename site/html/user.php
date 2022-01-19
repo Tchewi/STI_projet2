@@ -7,6 +7,8 @@ if ($_SESSION["valid"] != 1) {
         header("Location: login.php");
     }
 }
+require_once "utils/utils.php";
+generate_csrf();
 ?>
 
 <html>
@@ -16,36 +18,42 @@ if ($_SESSION["valid"] != 1) {
 </head>
 
 <body>
-<h1>Manage user</h1>
+<h1>Add a user</h1>
 
 <?php
 if (isset($_GET['error'])) {
     echo htmlspecialchars($_GET['error']);
 }
+generate_csrf();
 ?>
 
 <br>
 <form action="add_user.php" method="post">
     <div>Username</div>
     <input type="text" name="username">
-    <div>password</div>
+    <div>Password</div>
     <input type="text" name="password"><br>
     <input type="radio" name="status" value="0">
     <label>Collaborateur</label><br>
     <input type="radio" name="status" value="1">
     <label>Admin</label><br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Add user">
 </form>
-
+<hr/>
+<hr/><hr/>
+<h1>Modify existing users</h1>
 <form action="modify_user.php" method="post">
     <div>Username</div>
     <input type="text" name="username">
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Modify User">
 </form>
 
 <form action="delete_user.php" method="post">
     <div>Username</div>
     <input type="text" name="username">
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Delete User">
 </form>
 

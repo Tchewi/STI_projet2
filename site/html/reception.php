@@ -43,6 +43,8 @@ if ($db->lastErrorCode()) {
     exit;
 }
 
+// no need for csrf verify
+
 $username = $_SESSION['username'];
 
 $stmt = $db->prepare('SELECT * from MESSAGE WHERE DEST = :usr ORDER BY ID DESC');

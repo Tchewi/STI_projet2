@@ -16,7 +16,12 @@ $db = new DB();
 
 if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
-} else {
+}
+
+else {
+    session_start();
+    require_once "utils/utils.php";
+    verify_csrf();
     $username = $_POST['username'];
     $password = $_POST['password'];
 

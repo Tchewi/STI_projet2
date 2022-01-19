@@ -19,8 +19,9 @@ $db = new DB();
 if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
-    header("Location: reply.php?error={$error}");
 } else {
+    require_once "utils/utils.php";
+    verify_csrf();
     $dest = $_POST['dest'];
     $subject = $_POST['subject'];
     $content = $_POST['content'];
