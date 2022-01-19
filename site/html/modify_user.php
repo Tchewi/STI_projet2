@@ -31,6 +31,8 @@ if (!$db->LastErrorCode()) {
     header("Location: user.php?error={$error}");
 }
 else {
+    require_once "utils/utils.php";
+    generate_csrf();
     $stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
     $stmt->bindValue(":usr", $username);
 
@@ -68,6 +70,7 @@ if (isset($_GET['error'])) {
 <form action="new_pass_admin.php" method="post">
     <input type="hidden" name="usr" value="<?php echo $username ?>">
     <input type="text" name="new_pass">
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="New password">
 </form>
 
@@ -77,6 +80,7 @@ if (isset($_GET['error'])) {
     <label>Collaborateur</label><br>
     <input type="radio" name="status" value="admin">
     <label>Admin</label><br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="New status">
 </form>
 
@@ -85,15 +89,16 @@ if (isset($_GET['error'])) {
     <input type="radio" name="validity" value="1">
     <label>Activate</label><br>
     <input type="radio" name="validity" value="0">
-    <label>Desactivate</label><br>
+    <label>Disable</label><br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Change">
 </form>
 
-<form action="user.php" cmethod="post">
+<form action="user.php" method="post">
     <input class="button" type="submit" value="Go back">
 </form>
 
-<form action="welcome_admin.php" cmethod="post">
+<form action="welcome_admin.php" method="post">
     <input class="button" type="submit" value="Home">
 </form>
 

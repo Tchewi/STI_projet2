@@ -19,6 +19,8 @@ if (!$db->lastErrorCode()) {
 }
 
 else {
+    require_once "utils/utils.php";
+    verify_csrf();
     $username = $_POST['username'];
     $password = $_POST['password'];
 

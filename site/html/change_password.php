@@ -5,6 +5,8 @@ if ($_SESSION["valid"] != 1) {
     session_destroy();
     header("Location: login.php");
 }
+require_once "utils/utils.php";
+generate_csrf();
 ?>
 
 <html>
@@ -21,6 +23,7 @@ if ($_SESSION["valid"] != 1) {
     <input type="text" name="oldpass">
     <div>New password</div>
     <input type="text" name="newpass"></br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Send">
 </form>
 

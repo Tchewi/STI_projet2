@@ -22,6 +22,8 @@ if (!$db->lastErrorCode()) {
     exit;
 }
 else {
+    require_once "utils/utils.php";
+    verify_csrf();
     $id = $_POST['id'];
 
     $stmt = $db->prepare('DELETE from MESSAGE WHERE ID = :id');

@@ -22,6 +22,8 @@ if (!$db->lastErrorCode()) {
     header("Location: new_message.php?error={$error}");
     exit;
 }
+require_once "utils/utils.php";
+verify_csrf();
 
 $dest = $_POST['dest'];
 $subject = $_POST['subject'];

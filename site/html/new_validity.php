@@ -22,17 +22,10 @@ if (!$db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
 
 } else {
-
+    require_once "utils/utils.php";
+    verify_csrf();
     $new_validity = $_POST['validity'];
     $username = $_POST['usr'];
-
-    /*
-    if ($newstatus == "admin") {
-        $status = 1;
-    } else {
-        $status = 0;
-    }
-    */
 
     $stmt = $db->prepare('UPDATE ACCOUNT SET VALIDITY=:val WHERE USERNAME = :usr');
     $stmt->bindValue(":status", $new_validity);

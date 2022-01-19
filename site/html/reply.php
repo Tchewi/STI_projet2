@@ -7,6 +7,8 @@ if ($_SESSION["valid"] != 1) {
 }
 
 $dest = $_POST['dest'];
+require_once "utils/utils.php";
+generate_csrf();
 ?>
 
 <html>
@@ -30,6 +32,7 @@ if (isset($_GET['error'])) {
     <input type="text" name="subject"></br>
     <div>Contenu</div>
     <input type="text" name="content" size="50"></br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input type="submit" value="Reply">
 </form>
 

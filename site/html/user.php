@@ -7,6 +7,8 @@ if ($_SESSION["valid"] != 1) {
         header("Location: login.php");
     }
 }
+
+generate_csrf();
 ?>
 
 <html>
@@ -22,6 +24,8 @@ if ($_SESSION["valid"] != 1) {
 if (isset($_GET['error'])) {
     echo htmlspecialchars($_GET['error']);
 }
+require_once "utils/utils.php";
+generate_csrf();
 ?>
 
 <br>
@@ -34,18 +38,21 @@ if (isset($_GET['error'])) {
     <label>Collaborateur</label><br>
     <input type="radio" name="status" value="1">
     <label>Admin</label><br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Add user">
 </form>
 
 <form action="modify_user.php" method="post">
     <div>Username</div>
     <input type="text" name="username">
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Modify User">
 </form>
 
 <form action="delete_user.php" method="post">
     <div>Username</div>
     <input type="text" name="username">
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Delete User">
 </form>
 

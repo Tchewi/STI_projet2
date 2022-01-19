@@ -23,7 +23,8 @@ if (!$db->lastErrorCode()) {
     header("Location: user.php?error={$error}");
     exit;
 } else {
-
+    require_once "utils/utils.php";
+    verify_csrf();
     $newpass = $_POST['new_pass'];
     $username = $_POST['usr'];
 

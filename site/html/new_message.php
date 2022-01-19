@@ -5,6 +5,8 @@ if ($_SESSION["valid"] != 1) {
     session_destroy();
     header("Location: login.php");
 }
+require_once "utils/utils.php";
+generate_csrf();
 ?>
 
 <html>
@@ -29,6 +31,7 @@ if (isset($_GET['error'])) {
     <input type="text" name="subject"></br>
     <div>Contenu</div>
     <textarea name="content" rows="10" cols="50"></textarea>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     </br><input class="button" type="submit" value="Send">
 </form>
 

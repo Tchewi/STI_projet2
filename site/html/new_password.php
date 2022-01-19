@@ -21,7 +21,8 @@ if (!$db->lastErrorCode()) {
     header("Location: change_password.php");
     exit;
 }
-
+require_once "utils/utils.php";
+verify_csrf();
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
 $username = $_SESSION['username'];
@@ -45,12 +46,6 @@ if (!$oldpass) {
     echo 'Empty new password';
 
 } else {
-
-    $sql2 = <<<EOF
-UPDATE ACCOUNT 
-SET PASSWORD="$newpass"
-WHERE USERNAME="$username";
-EOF;
 
     $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwd WHERE USERNAME = :usr');
     $stmt->bindValue(":pwd", $newpass);

@@ -18,6 +18,8 @@ session_destroy();
 if (isset($_GET['error'])) {
     echo htmlspecialchars($_GET['error']);
 }
+require_once "utils/utils.php";
+generate_csrf();
 ?>
 
 
@@ -28,6 +30,7 @@ if (isset($_GET['error'])) {
     <input type="text" name="username"><br>
     <div>Password</div>
     <input type="password" name="password"><br>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Login">
 </form>
 
