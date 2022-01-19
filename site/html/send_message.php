@@ -44,7 +44,7 @@ if (!$dest) {
     $ret = $stmt->execute();
 
     if ($ret) {
-        $error = 'Message send';
+        $error = 'Message sent';
 
     } else {
         $error = 'Something went wrong';

@@ -19,6 +19,7 @@ if ($db->lastErrorCode()) {
 }
 
 else {
+    session_start();
     require_once "utils/utils.php";
     verify_csrf();
     $username = $_POST['username'];

@@ -33,10 +33,7 @@ Corrections de sécurité
 - [x] Check les redirections
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
 - [x] Code exécuté après redirection (lorsque erreur de connexion à la DB)
-
-Questions à poser:
-
-- Protéger du XSS stocké avant de stocker ou avant d'afficher ?
+- [ ] Quand on change de mot de passe on peut voir le mot de passe + pas de double vérif 
 
 Améliorations visuelles:
 
