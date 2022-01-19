@@ -26,7 +26,7 @@ if (isset($_GET['error'])) {
 }
 ?>
 
-<form action="send_reply.php" method="post">
+<form action="send_message.php" method="post">
     <input type="hidden" name="dest" value="<?php echo htmlspecialchars($dest) ?>"></br>
     <div>Sujet</div>
     <input type="text" name="subject"></br>

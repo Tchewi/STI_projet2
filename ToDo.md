@@ -28,13 +28,25 @@ Corrections de sécurité
 - [ ] Configurer le CORS
 - [ ] Flag HttpOnly sur le cookie de session
 - [ ] Attribut SameSite sur le cookie de session
-- [ ] X-Powered-By à désactiver --> serveur
+
 - [x] Hasher les mots de passe sur la base de données
 - [x] Check les redirections
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
+- [ ] Code exécuté après redirection
+
+Améliorations à faire dans le serveur: (donc pas dans ce projet)
+
+- [ ] X-Powered-By à désactiver --> serveur
 - [x] Code exécuté après redirection (lorsque erreur de connexion à la DB)
 - [ ] Quand on change de mot de passe on peut voir le mot de passe + pas de double vérif 
 
-Améliorations visuelles:
+Améliorations autres:
 
--   [x] Ajouter Framework CSS (https://athemes.com/collections/best-css-frameworks/)
+- [x] Factorisé en partie le code
+  - pas tout fait mais c'est déjà mieux
+- [x] Ajouter Framework CSS (https://athemes.com/collections/best-css-frameworks/)
+
+
+Remarques:
+
+- On a sécurisé le XSS du côté du client. Idéalement il faudrait aussi le 
