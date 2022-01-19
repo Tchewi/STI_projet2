@@ -1,28 +1,19 @@
 <?php
-session_start();
-session_unset();
-session_destroy();
-session_start();
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
+generate_csrf();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <h1>Login</h1>
-
-<?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-require_once "utils/utils.php";
-generate_csrf();
-?>
-
 
 <!-- Authentication -->
 <form action="verify_login.php" method="post">

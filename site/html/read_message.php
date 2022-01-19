@@ -1,17 +1,14 @@
 <?php
-require_once "utils/utils.php";
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-}
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
+checkValid();
 ?>
 
 <html>
 <head>
     <title>Read message</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -35,7 +32,6 @@ if ($db->lastErrorCode()) {
     header("Location: reception.php?error={$error}");
     exit;
 }
-require_once "utils/utils.php";
 verify_csrf();
 
 $id = $_POST['id'];
@@ -71,7 +67,7 @@ $db->close();
     <input class="button" type="submit" value="Reply">
 </form>
 
-<form action="delete.php" method="post">
+<form action="delete_message.php" method="post">
     <input type="hidden" name="id" value=<?php echo $id; ?>>
     <input class="button" type="submit" value="Delete">
 </form>

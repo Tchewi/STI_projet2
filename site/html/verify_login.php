@@ -3,8 +3,11 @@
  * @author  Rébecca Tevaearai
  * @date    11.10.2021
  */
+require_once("utils/session.php");
+require_once "utils/csrf.php";
 
 $path = "../databases/database.sqlite";
+
 
 class DB extends SQLite3 {
     function __construct()  {
@@ -21,8 +24,7 @@ if($db->lastErrorCode()) {
     exit;
 }
 
-session_start();
-require_once "utils/utils.php";
+startSession();
 verify_csrf();
 
 session_unset(); // in order to create new one and invalidate csrf

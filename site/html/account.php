@@ -1,22 +1,18 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Account</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <h2>Account creation</h2>
 
 <?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-require_once "utils/utils.php";
+require_once("utils/session.php");
+require_once("utils/session.php");
+startSession();
+checkValid();
 generate_csrf();
 ?>
 

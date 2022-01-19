@@ -1,12 +1,8 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    if ($_SESSION["admin"] != 1) {
-        session_unset();
-        session_destroy();
-        header("Location: login.php");
-    }
-}
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
+checkAdmin();
 
 class DB extends SQLite3
 {
@@ -23,7 +19,6 @@ if ($db->lastErrorCode()) {
     header("Location: user.php?error={$error}");
     exit;
 } else {
-    require_once "utils/utils.php";
     verify_csrf();
     $newpass = $_POST['new_pass'];
     $username = $_POST['usr'];
@@ -60,7 +55,7 @@ $db->close();
 <html>
 <head>
     <title>modify user</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 

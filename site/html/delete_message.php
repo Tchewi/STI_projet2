@@ -1,10 +1,8 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-}
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+checkValid();
+startSession();
 
 class DB extends SQLite3
 {
@@ -22,7 +20,6 @@ if ($db->lastErrorCode()) {
     exit;
 }
 else {
-    require_once "utils/utils.php";
     verify_csrf();
     $id = $_POST['id'];
 

@@ -1,30 +1,19 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-}
-
-$dest = $_POST['dest'];
-require_once "utils/utils.php";
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
 generate_csrf();
+$dest = $_POST['dest'];
 ?>
 
 <html>
 <head>
     <title>Read message</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 <h1>Reply to <?php echo htmlspecialchars($dest) ?></h1>
-
-<?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-?>
 
 <form action="send_message.php" method="post">
     <input type="hidden" name="dest" value="<?php echo htmlspecialchars($dest) ?>"></br>

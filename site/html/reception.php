@@ -1,16 +1,13 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-}
+require_once("utils/session.php");
+startSession();
+checkValid();
 ?>
 
 <html>
 <head>
     <title>Reception</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

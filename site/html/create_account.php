@@ -3,6 +3,9 @@
  * @author  Rébecca Tevaearai
  * @date    11.10.2021
  */
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
 
 class DB extends SQLite3
 {
@@ -19,8 +22,6 @@ if ($db->lastErrorCode()) {
 }
 
 else {
-    session_start();
-    require_once "utils/utils.php";
     verify_csrf();
     $username = $_POST['username'];
     $password = $_POST['password'];

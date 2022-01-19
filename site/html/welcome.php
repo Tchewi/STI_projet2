@@ -1,34 +1,27 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-} else if ($_SESSION["admin"] == 1) {
+require_once("utils/session.php");
+startSession();
+checkValid();
+
+if ($_SESSION["admin"] == 1) {
     if (isset($_GET['error'])) {
         header("Location: welcome_admin.php?error={$_GET['error']}");
 
     } else {
         header("Location: welcome_admin.php");
-
     }
+    exit;
 }
 ?>
 
 <html>
 <head>
     <title>Welcome</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 <h1>Home page</h1>
-
-<?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-?>
 
 <form action="reception.php" method="post">
     <input class="button" type="submit" value="Message reception">

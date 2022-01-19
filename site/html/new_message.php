@@ -1,28 +1,21 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-}
-require_once "utils/utils.php";
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
+checkValid();
 generate_csrf();
 ?>
 
 <html>
 <head>
     <title>new message</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 <h1>New message</h1>
 
-<?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-?>
+
 
 <form action="send_message.php" method="post">
     <div>Destinataire</div>

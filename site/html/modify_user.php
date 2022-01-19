@@ -1,12 +1,9 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    if ($_SESSION["admin"] != 1) {
-        session_unset();
-        session_destroy();
-        header("Location: login.php");
-    }
-}
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
+checkAdmin();
+generate_csrf();
 
 $username = htmlspecialchars($_POST['username']);
 
@@ -31,8 +28,6 @@ if ($db->LastErrorCode()) {
     header("Location: user.php?error={$error}");
 }
 else {
-    require_once "utils/utils.php";
-    generate_csrf();
     $stmt = $db->prepare('SELECT * from ACCOUNT WHERE USERNAME = :usr');
     $stmt->bindValue(":usr", $username);
 
@@ -55,17 +50,11 @@ else {
 <html>
 <head>
     <title>modify user</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <h1>Modify <?php echo $username ?> account</h1>
-
-<?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-?>
 
 <form action="new_pass_admin.php" method="post">
     <input type="hidden" name="usr" value="<?php echo $username ?>">

@@ -1,10 +1,8 @@
 <?php
-session_start();
-if ($_SESSION["valid"] != 1) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-}
+require_once("utils/session.php");
+require_once("utils/csrf.php");
+startSession();
+checkAdmin();
 
 class DB extends SQLite3
 {
@@ -21,7 +19,6 @@ if ($db->lastErrorCode()) {
     header("Location: change_password.php");
     exit;
 }
-require_once "utils/utils.php";
 verify_csrf();
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
@@ -69,7 +66,7 @@ $db->close();
 <html>
 <head>
     <title>psdaadw</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
