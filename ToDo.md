@@ -29,7 +29,7 @@ Corrections de sécurité
 - [ ] Flag HttpOnly sur le cookie de session
 - [ ] Attribut SameSite sur le cookie de session
 - [ ] X-Powered-By à désactiver --> serveur
-- [ ] Hasher les mots de passe sur la base de données
+- [x] Hasher les mots de passe sur la base de données
 - [x] Check les redirections
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
 - [x] Code exécuté après redirection (lorsque erreur de connexion à la DB)

@@ -18,7 +18,7 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db->lastErrorCode()) {
+if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     header("Location: user.php?error={$error}");
     exit;
@@ -33,10 +33,11 @@ if (!$db->lastErrorCode()) {
         header("Location: user.php?error={$error}");
 
     } else {
+        $newPassHash = password_hash($newpass, PASSWORD_DEFAULT);
 
-        $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwd WHERE USERNAME=:usr');
+        $stmt = $db->prepare('UPDATE ACCOUNT SET PASSWORD=:pwdHash WHERE USERNAME=:usr');
         $stmt->bindValue(":usr", $username);
-        $stmt->bindValue(":pwd", $newpass);
+        $stmt->bindValue(":pwdHash", $newPassHash);
 
         $ret = $stmt->execute();
 

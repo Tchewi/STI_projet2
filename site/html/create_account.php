@@ -8,13 +8,13 @@ class DB extends SQLite3
 {
     function __construct()
     {
-        $this->open('../databases/database.sqlite');
+        return $this->open('../databases/database.sqlite');
     }
 }
 
 $db = new DB();
 
-if (!$db->lastErrorCode()) {
+if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
 }
 
@@ -32,9 +32,11 @@ else {
 
     } else {
 
-        $stmt = $db->prepare('INSERT INTO ACCOUNT (USERNAME, PASSWORD, VALIDITY, STATUS) VALUES (:usr, :pwd, 1, 0)');
+        $passwdHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $db->prepare('INSERT INTO ACCOUNT (USERNAME, PASSWORD, VALIDITY, STATUS) VALUES (:usr, :pwdHash, 1, 0)');
         $stmt->bindValue(":usr", $username);
-        $stmt->bindValue(":pwd", $password);
+        $stmt->bindValue(":pwdHash", $passwdHash);
 
         $ret = $stmt->execute();
 
@@ -49,6 +51,4 @@ else {
 
 $db->close();
 header("Location: account.php?error={$error}");
-
-?>
 

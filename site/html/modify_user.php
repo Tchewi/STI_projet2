@@ -25,7 +25,7 @@ class DB extends SQLite3
 
 $db = new DB();
 
-if (!$db->LastErrorCode()) {
+if ($db->LastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: user.php?error={$error}");

@@ -14,7 +14,7 @@ class DB extends SQLite3 {
 
 $db = new DB();
 
-if(!$db->lastErrorCode()) {
+if($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
     $db->close();
     header("Location: login.php?error={$error}");
@@ -40,7 +40,7 @@ $admin = $row['STATUS'];
 $valid = $row['VALIDITY'];
 
 // username doesn't exist or wrong password
-if (!$usr || $password != $pwd) {
+if (!$usr || !password_verify($password, $pwd)) {
     $error = 'Invalid login';
     header("Location: login.php?error={$error}");
 // validity = 0
