@@ -59,9 +59,10 @@ $db->close();
     <input type="hidden" name="dest" value="<?php echo $row['EXP'] ?>">
     <input class="button" type="submit" value="Reply">
 </form>
-
+<?php generate_csrf_token() ?>
 <form action="delete_message.php" method="post">
     <input type="hidden" name="id" value=<?php echo $id; ?>>
+    <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Delete">
 </form>
 

@@ -21,5 +21,9 @@ Un compte admin est disponible:
 * Username: admin
 * Password: Pass123*
 
+Un compte collaborateur est également disponible:
+* Username: grenouille
+* Password: Phrog42#
+
 
 Le mot de passe pour phpliteadmin est "Pass123*".

@@ -24,7 +24,7 @@ else {
 
     $usr = $_SESSION['username'];
 
-    if ($username = $usr) {
+    if ($username == $usr) {
         header("Location: login.php");
         exit;
     }

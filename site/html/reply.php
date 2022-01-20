@@ -21,7 +21,7 @@ $dest = $_POST['dest'];
     <div>Sujet</div>
     <input type="text" name="subject"></br>
     <div>Contenu</div>
-    <input type="text" name="content" size="50"></br>
+    <textarea name="content" rows="10" cols="50"></textarea></br>
     <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input type="submit" value="Reply">
 </form>
