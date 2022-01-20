@@ -22,7 +22,7 @@ if ($db->lastErrorCode()) {
     }
 
     $stmt = $db->prepare('UPDATE ACCOUNT SET STATUS=:status WHERE USERNAME = :usr');
-    $stmt->bindValue(":status", $newstatus);
+    $stmt->bindValue(":status", $status);
     $stmt->bindValue(":usr", $username);
 
     $ret = $stmt->execute();
