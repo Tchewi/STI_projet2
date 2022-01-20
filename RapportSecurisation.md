@@ -17,6 +17,7 @@
     - https://www.phptutorial.net/php-tutorial/php-csrf/
     - `<input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">`
     - `verify_csrf()`
+- [x] Changer le mot de passe de phpliteadmin
 - [x] Flag HttpOnly sur le cookie de session
 - [x] Hasher les mots de passe sur la base de données
 - [x] Check les redirections
@@ -29,7 +30,6 @@
   - la politique est: 
     - minimum 8 charactères;
     - au moins une majuscule, une minuscule, un chiffre et un caractère spécial (#$^+=!*()@%&).
-
 ## Améliorations à faire dans le serveur: (donc pas dans ce projet)
 
 - X-Powered-By à désactiver
