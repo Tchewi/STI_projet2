@@ -51,7 +51,6 @@ if ($ret) {
 
         echo '<input class="button" type="submit" value="Read"></form>';
     }
-
 }
 
 $db->close();

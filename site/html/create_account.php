@@ -5,6 +5,7 @@
  */
 require_once("utils/session.php");
 require_once("utils/db.php");
+require_once("utils/password_policy.php");
 startSession();
 
 $db = new DB();
@@ -20,8 +21,8 @@ else {
     if (!$username) {
         $error = 'Failed: Empty username';
 
-    } else if (!$password) {
-        $error = 'Failed: Empty password';
+    } else if (!checkPasswordPolicy($password)) {
+        $error = 'Error: the password does not match the policy';
 
     } else {
 

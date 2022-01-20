@@ -2,6 +2,7 @@
 require_once("utils/session.php");
 require_once("utils/csrf.php");
 require_once("utils/db.php");
+require_once("utils/password_policy.php");
 startSession();
 checkValid();
 
@@ -32,8 +33,8 @@ if (!$oldpass) {
 } else if (!password_verify($oldpass, $pwdHash)) {
     echo 'wrong password';
 
-} else if (!$newpass) {
-    echo 'Empty new password';
+} else if (!checkPasswordPolicy($newpass)) {
+    echo 'Password does not match policy';
 
 } else {
 

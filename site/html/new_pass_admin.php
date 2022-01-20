@@ -2,6 +2,7 @@
 require_once("utils/session.php");
 require_once("utils/csrf.php");
 require_once("utils/db.php");
+require_once("utils/password_policy.php");
 startSession();
 checkAdmin();
 
@@ -16,8 +17,8 @@ if ($db->lastErrorCode()) {
     $newpass = $_POST['new_pass'];
     $username = $_POST['usr'];
 
-    if (!$newpass) {
-        $error = "Empty password";
+    if (!checkPasswordPolicy($newpass)) {
+        $error = "Password does not match password policy";
         header("Location: user.php?error={$error}");
 
     } else {
@@ -36,9 +37,7 @@ if ($db->lastErrorCode()) {
             $success = "Password successfully changed";
             header("Location: user.php?error={$success}");
         }
-
     }
-
 }
 
 $db->close();
