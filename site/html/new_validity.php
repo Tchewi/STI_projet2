@@ -15,8 +15,9 @@ if ($db->lastErrorCode()) {
     $new_validity = $_POST['validity'];
     $username = $_POST['usr'];
 
-    $stmt = $db->prepare('UPDATE ACCOUNT SET VALIDITY=:val WHERE USERNAME = :usr');
-    $stmt->bindValue(":status", $new_validity);
+    $stmt = $db->prepare('UPDATE ACCOUNT SET VALIDITY = :validity, NB_ATTEMPT_CON = :nbAttemptCon WHERE USERNAME = :usr');
+    $stmt->bindValue(":validity", $new_validity);
+    $stmt->bindValue(":nbAttemptCon", 0);
     $stmt->bindValue(":usr", $username);
 
     $ret = $stmt->execute();
