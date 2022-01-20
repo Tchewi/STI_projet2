@@ -3,7 +3,7 @@ require_once("utils/session.php");
 require_once("utils/csrf.php");
 require_once("utils/db.php");
 startSession();
-checkAdmin();
+checkValid();
 
 $db = new DB();
 

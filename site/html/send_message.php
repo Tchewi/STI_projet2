@@ -3,6 +3,7 @@ require_once("utils/session.php");
 require_once("utils/csrf.php");
 require_once("utils/db.php");
 startSession();
+checkValid();
 
 $db = new DB();
 
@@ -42,5 +43,3 @@ if (!$dest) {
 
 $db->close();
 header("Location: new_message.php?error={$error}");
-
-?>

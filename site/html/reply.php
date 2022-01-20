@@ -2,6 +2,7 @@
 require_once("utils/session.php");
 require_once("utils/csrf.php");
 startSession();
+checkValid();
 generate_csrf();
 $dest = $_POST['dest'];
 ?>
