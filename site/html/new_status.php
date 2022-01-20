@@ -38,4 +38,3 @@ header("Location: user.php?error={$error}");
 $db->close();
 unset($db);
 
-?>
