@@ -12,7 +12,7 @@ if ($db->lastErrorCode()) {
     header("Location: new_message.php?error={$error}");
     exit;
 }
-verify_csrf();
+verify_csrf_token();
 
 $dest = $_POST['dest'];
 $subject = $_POST['subject'];

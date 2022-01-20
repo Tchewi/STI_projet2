@@ -9,7 +9,7 @@ $db = new DB();
 if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
 } else {
-    verify_csrf();
+    verify_csrf_token();
     $username = $_POST['username'];
     $password = $_POST['password'];
     $status = $_POST['status'];

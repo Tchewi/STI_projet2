@@ -5,8 +5,6 @@ Corrections de sécurité
     - [x] read_message.php
     - [x] reply.php
       - solution: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
-    - [ ] XSS stockées : les variables affichées qui proviennent de la DB
-      - On a sécurisé uniquement du côté du client et pas dans la BDD
 - [x] Injections SQL:
     - [x] préparer TOUTES les requêtes
       - indiquer le type si besoin (par exemple SQLITE3_INTEGER pour les ID) 
@@ -34,7 +32,10 @@ Améliorations à faire dans le serveur: (donc pas dans ce projet)
 - [ ] Attribut SameSite sur le cookie de session
   - Pas possible en PHP 5.6. Il faut modifier la config du serveur Nginx
 - Configurer l'envoi du header CSP par Nginx
-
+- Configurer le CORS dans la config de Nginx
+  - https://enable-cors.org/server_nginx.html
+- Configurer HTTPS et l'attribut Secure sur le cookie de session
+- 
 Améliorations autres:
 
 - [x] Factoriser en partie le code

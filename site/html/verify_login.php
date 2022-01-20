@@ -25,7 +25,7 @@ if($db->lastErrorCode()) {
 }
 
 startSession();
-verify_csrf();
+verify_csrf_token();
 
 session_unset(); // in order to create new one and invalidate csrf
 session_destroy();

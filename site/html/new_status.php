@@ -11,7 +11,7 @@ if ($db->lastErrorCode()) {
     $error = $db->lastErrorMsg();
 
 } else {
-    verify_csrf();
+    verify_csrf_token();
     $newstatus = $_POST['status'];
     $username = $_POST['usr'];
 

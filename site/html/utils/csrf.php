@@ -1,11 +1,11 @@
 <?php
 
     // Source: https://www.phptutorial.net/php-tutorial/php-csrf/
-    function generate_csrf(){
+    function generate_csrf_token(){
         $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     }
 
-    function verify_csrf(){
+    function verify_csrf_token(){
         $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
         if (!$token || $token !== $_SESSION['token']) {
             // return 405 http status code

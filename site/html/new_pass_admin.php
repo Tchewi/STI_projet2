@@ -12,7 +12,7 @@ if ($db->lastErrorCode()) {
     header("Location: user.php?error={$error}");
     exit;
 } else {
-    verify_csrf();
+    verify_csrf_token();
     $newpass = $_POST['new_pass'];
     $username = $_POST['usr'];
 

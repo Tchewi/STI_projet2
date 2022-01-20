@@ -4,7 +4,7 @@ require_once("utils/csrf.php");
 require_once("utils/db.php");
 startSession();
 checkAdmin();
-generate_csrf();
+generate_csrf_token();
 
 $username = htmlspecialchars($_POST['username']);
 

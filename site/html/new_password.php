@@ -12,7 +12,7 @@ if ($db->lastErrorCode()) {
     header("Location: change_password.php");
     exit;
 }
-verify_csrf();
+verify_csrf_token();
 $oldpass = $_POST['oldpass'];
 $newpass = $_POST['newpass'];
 $username = $_SESSION['username'];

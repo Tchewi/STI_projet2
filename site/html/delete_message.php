@@ -13,7 +13,7 @@ if ($db->lastErrorCode()) {
     exit;
 }
 else {
-    verify_csrf();
+    verify_csrf_token();
     $id = $_POST['id'];
 
     $stmt = $db->prepare('DELETE from MESSAGE WHERE ID = :id');

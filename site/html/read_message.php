@@ -25,7 +25,7 @@ if ($db->lastErrorCode()) {
     header("Location: reception.php?error={$error}");
     exit;
 }
-verify_csrf();
+verify_csrf_token();
 
 $id = $_POST['id'];
 

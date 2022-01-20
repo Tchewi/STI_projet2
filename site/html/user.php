@@ -3,7 +3,7 @@ require_once("utils/session.php");
 require_once("utils/csrf.php");
 startSession();
 checkAdmin();
-generate_csrf();
+generate_csrf_token();
 ?>
 
 <html>
