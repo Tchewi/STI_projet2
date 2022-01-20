@@ -8,7 +8,7 @@ checkValid();
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    echo $db->lastErrorMsg();
+    $error = "Database is unavailable";
     header("Location: reception.php");
     exit;
 }

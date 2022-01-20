@@ -9,7 +9,7 @@ checkAdmin();
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    $error = $db->lastErrorMsg();
+    $error = "Database is unavailable";
     header("Location: user.php?error={$error}");
     exit;
 } else {

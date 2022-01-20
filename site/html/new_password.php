@@ -9,8 +9,8 @@ checkValid();
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    echo $db->lastErrorMsg();
-    header("Location: change_password.php");
+    $error = "Database is unavailable";
+    header("Location: change_password.php=error=" . $error);
     exit;
 }
 verify_csrf_token();

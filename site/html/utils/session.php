@@ -18,7 +18,7 @@ function checkValid(){
     if ($_SESSION["valid"] != 1) {
         session_unset();
         session_destroy();
-        http_redirect("login.php");
+        header("Location: login.php");
         exit;
     }
 }

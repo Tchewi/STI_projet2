@@ -21,7 +21,7 @@ generate_csrf_token();
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    $error = $db->lastErrorMsg();
+    $error = "Database is unavailable";
     $db->close();
     header("Location: welcome.php");
     exit;

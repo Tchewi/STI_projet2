@@ -7,7 +7,7 @@ startSession();
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    $error = $db->lastErrorMsg();
+    $error = "Database is unavailable";
 } else {
     verify_csrf_token();
     $username = $_POST['username'];
