@@ -4,7 +4,6 @@
  * @date    11.10.2021
  */
 require_once("utils/session.php");
-require_once("utils/csrf.php");
 require_once("utils/db.php");
 startSession();
 
@@ -15,7 +14,6 @@ if ($db->lastErrorCode()) {
 }
 
 else {
-    verify_csrf();
     $username = $_POST['username'];
     $password = $_POST['password'];
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h2>Account creation</h2>
+<h1>Account creation</h1>
 
 <?php
 require_once("utils/session.php");

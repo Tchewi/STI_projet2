@@ -30,8 +30,10 @@ Corrections de sécurité
 Améliorations à faire dans le serveur: (donc pas dans ce projet)
 
 - [ ] X-Powered-By à désactiver --> serveur
+- [ ] Cacher la version du serveur sur les pages d'erreur Nginx
 - [ ] Attribut SameSite sur le cookie de session
   - Pas possible en PHP 5.6. Il faut modifier la config du serveur Nginx
+- Configurer l'envoi du header CSP par Nginx
 
 Améliorations autres:
 
