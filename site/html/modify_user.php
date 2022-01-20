@@ -51,7 +51,7 @@ else {
 
 <form action="new_pass_admin.php" method="post">
     <input type="hidden" name="usr" value="<?php echo $username ?>">
-    <input type="text" name="new_pass">
+    <input type="password" name="new_pass">
     <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="New password">
 </form>

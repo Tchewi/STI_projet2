@@ -25,7 +25,7 @@ Corrections de sécurité
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
 - [x] Code exécuté après redirection (lorsque erreur de connexion à
 - la DB)
-- [ ] Quand on change de mot de passe on peut voir le mot de passe + pas de double vérif
+- [x] Quand on change de mot de passe on peut voir le mot de passe
 
 Améliorations à faire dans le serveur: (donc pas dans ce projet)
 
@@ -37,7 +37,7 @@ Améliorations à faire dans le serveur: (donc pas dans ce projet)
 
 Améliorations autres:
 
-- [x] Factorisé en partie le code
+- [x] Factoriser en partie le code
   - pas tout fait mais c'est déjà mieux
 - [x] Ajouter Framework CSS (https://athemes.com/collections/best-css-frameworks/)
 - [x] Ajout d'une page d'index redirigeant vers la page de login
