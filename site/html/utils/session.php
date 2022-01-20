@@ -10,6 +10,7 @@ if (isset($_GET['error'])) {?>
 
 function startSession(){
     session_set_cookie_params(10000, null, null, false, true); // we do not have HTTPS server so we don't set Secure option
+    // sameSite cannot be set in 5.6
     session_start();
 }
 
@@ -31,5 +32,3 @@ function checkAdmin(){
         exit;
     }
 }
-
-?>

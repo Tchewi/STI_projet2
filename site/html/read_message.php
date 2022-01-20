@@ -1,6 +1,7 @@
 <?php
 require_once("utils/session.php");
 require_once("utils/csrf.php");
+require_once("utils/db.php");
 startSession();
 checkValid();
 ?>
@@ -15,14 +16,6 @@ checkValid();
 <h1>Message</h1>
 
 <?php
-
-class DB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../databases/database.sqlite');
-    }
-}
 
 $db = new DB();
 

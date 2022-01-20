@@ -1,10 +1,3 @@
-Améliorations du code:
-
-- [x] Ajout d'une page d'index redirigeant vers la page de login
-- [x] Impossibilité de créer un collaborateur depuis la page de gestion des utilisateurs
-- [ ] Factoriser le code (connexion BDD)
-
-
 Corrections de sécurité
 
 - [x] XSS:
@@ -24,29 +17,33 @@ Corrections de sécurité
     - https://www.phptutorial.net/php-tutorial/php-csrf/
     - `<input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">`
     - `verify_csrf()`
-    - [ ] VERIFIER QUE CA FONCTIONNE
 - [ ] Configurer le CORS
-- [ ] Flag HttpOnly sur le cookie de session
-- [ ] Attribut SameSite sur le cookie de session
+- [x] Flag HttpOnly sur le cookie de session
 
 - [x] Hasher les mots de passe sur la base de données
 - [x] Check les redirections
 - [ ] Vérifier la présence des paramètres à récup avec isset(...)
-- [ ] Code exécuté après redirection
+- [x] Code exécuté après redirection (lorsque erreur de connexion à
+- la DB)
+- [ ] Quand on change de mot de passe on peut voir le mot de passe + pas de double vérif
 
 Améliorations à faire dans le serveur: (donc pas dans ce projet)
 
 - [ ] X-Powered-By à désactiver --> serveur
-- [x] Code exécuté après redirection (lorsque erreur de connexion à la DB)
-- [ ] Quand on change de mot de passe on peut voir le mot de passe + pas de double vérif 
+- [ ] Attribut SameSite sur le cookie de session
+  - Pas possible en PHP 5.6. Il faut modifier la config du serveur Nginx
 
 Améliorations autres:
 
 - [x] Factorisé en partie le code
   - pas tout fait mais c'est déjà mieux
 - [x] Ajouter Framework CSS (https://athemes.com/collections/best-css-frameworks/)
+- [x] Ajout d'une page d'index redirigeant vers la page de login
+- [x] Impossibilité de créer un collaborateur depuis la page de gestion des utilisateurs
+- [x] Factoriser le code (connexion BDD)
+
 
 
 Remarques:
 
-- On a sécurisé le XSS du côté du client. Idéalement il faudrait aussi le 
+- On a sécurisé le XSS du côté du client. Idéalement il faudrait aussi le faire avant de stocker dans la BDD

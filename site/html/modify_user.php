@@ -1,6 +1,7 @@
 <?php
 require_once("utils/session.php");
 require_once("utils/csrf.php");
+require_once("utils/db.php");
 startSession();
 checkAdmin();
 generate_csrf();
@@ -10,14 +11,6 @@ $username = htmlspecialchars($_POST['username']);
 if (!$username) {
     $error = "Empty username";
     header("Location: user.php?error={$error}");
-}
-
-class DB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../databases/database.sqlite');
-    }
 }
 
 $db = new DB();

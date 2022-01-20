@@ -1,16 +1,9 @@
 <?php
 require_once("utils/session.php");
 require_once("utils/csrf.php");
+require_once("utils/db.php");
 startSession();
 checkAdmin();
-
-class DB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../databases/database.sqlite');
-    }
-}
 
 $db = new DB();
 

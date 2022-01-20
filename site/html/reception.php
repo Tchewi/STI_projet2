@@ -1,5 +1,6 @@
 <?php
 require_once("utils/session.php");
+require_once("utils/db.php");
 startSession();
 checkValid();
 ?>
@@ -17,20 +18,8 @@ checkValid();
 if (isset($_GET['error'])) {
     echo htmlspecialchars($_GET['error']);
 }
-?>
-
-<?php
 
 // fetch all message destined to user
-
-class DB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../databases/database.sqlite');
-    }
-}
-
 $db = new DB();
 
 if ($db->lastErrorCode()) {

@@ -7,5 +7,3 @@ class DB extends SQLite3
         $this->open('../databases/database.sqlite');
     }
 }
-
-$db = new DB();
