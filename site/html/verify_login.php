@@ -30,7 +30,7 @@ verify_csrf_token();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-//Gestion nom d'utilisateur vide
+// Empty username
 if (!$username){
     $error = 'Empty username';
     header("Location: login.php?error={$error}");
@@ -42,7 +42,7 @@ $stmt->bindValue(":usr", $username);
 
 $ret = $stmt->execute();
 
-//Gestion nom d'utilisateur inexistant
+// Username doesn't exist
 if (!$ret) {
     $error = 'Invalid login';
     header("Location: login.php?error={$error}");
