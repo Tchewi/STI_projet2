@@ -56,7 +56,7 @@ if (!$usr || !password_verify($password, $pwd)) {
 
 // give a valid session and an admin session in case of an admin account
 } else {
-    session_start();
+    startSession();
     $_SESSION["valid"] = 1;
     $_SESSION["username"] = $usr;
 
@@ -68,5 +68,3 @@ if (!$usr || !password_verify($password, $pwd)) {
 
 
 $db->close();
-
-?>

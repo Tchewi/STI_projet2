@@ -35,4 +35,3 @@ header("Location: user.php?error={$error}");
 
 unset($db);
 
-?>

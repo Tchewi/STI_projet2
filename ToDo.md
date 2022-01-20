@@ -20,7 +20,7 @@ Corrections de sécurité
 
 - [x] Hasher les mots de passe sur la base de données
 - [x] Check les redirections
-- [ ] Vérifier la présence des paramètres à récup avec isset(...)
+- [x] Vérifier la présence des paramètres récupérés depuis le client
 - [x] Code exécuté après redirection (lorsque erreur de connexion à
 - la DB)
 - [x] Quand on change de mot de passe on peut voir le mot de passe

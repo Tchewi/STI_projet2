@@ -1,8 +1,10 @@
 <?php
 require_once("utils/session.php");
 require_once("utils/db.php");
+require_once("utils/csrf.php");
 startSession();
 checkValid();
+generate_csrf_token();
 ?>
 
 <html>
@@ -15,10 +17,6 @@ checkValid();
 <h1>Reception</h1>
 <br>
 <?php
-if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
-}
-
 // fetch all message destined to user
 $db = new DB();
 
@@ -45,10 +43,13 @@ if ($ret) {
         echo "Subject: " . htmlspecialchars($row['SUBJECT']) . "<br>";
         echo "Date: " . htmlspecialchars($row['DATE'] . " - " . $row['TIME']) . "<br>";
 
-        echo '<form action="read_message.php" method="post">
-        <input type="hidden" name="id" value="' . htmlspecialchars($row['ID']) . '">
-        <input class="button" type="submit" value="Read">
-        </form>';
+        echo '<form action="read_message.php" method="post">';
+        echo '<input type="hidden" name="id" value="' . htmlspecialchars($row['ID']) . '">';
+        if(isset($_SESSION['token'])){
+            echo '<input type="hidden" name="token" value="' .  $_SESSION['token'] . '">';
+        }
+
+        echo '<input class="button" type="submit" value="Read"></form>';
     }
 
 }

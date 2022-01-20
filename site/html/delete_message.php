@@ -2,8 +2,8 @@
 require_once("utils/session.php");
 require_once("utils/csrf.php");
 require_once("utils/db.php");
-checkValid();
 startSession();
+checkValid();
 
 $db = new DB();
 
@@ -28,5 +28,3 @@ else {
 
 }
 
-
-?>

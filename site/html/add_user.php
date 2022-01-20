@@ -42,4 +42,3 @@ if ($db->lastErrorCode()) {
 $db->close();
 header("Location: user.php?error={$error}");
 
-?>
