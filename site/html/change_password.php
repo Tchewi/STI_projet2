@@ -17,9 +17,9 @@ generate_csrf();
 
 <form action="new_password.php" method="post">
     <div>Old password</div>
-    <input type="text" name="oldpass">
+    <input type="password" name="oldpass">
     <div>New password</div>
-    <input type="text" name="newpass"></br>
+    <input type="password" name="newpass"></br>
     <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="Send">
 </form>

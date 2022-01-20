@@ -20,7 +20,7 @@ generate_csrf();
     <div>Username</div>
     <input type="text" name="username">
     <div>Password</div>
-    <input type="text" name="password"><br>
+    <input type="password" name="password"><br>
     <input type="radio" name="status" value="0">
     <label>Collaborateur</label><br>
     <input type="radio" name="status" value="1">
