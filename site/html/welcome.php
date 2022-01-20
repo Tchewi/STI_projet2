@@ -35,7 +35,7 @@ if ($_SESSION["admin"] == 1) {
     <input class="button" type="submit" value="Change password">
 </form>
 
-<form action="login.php" cmethod="post">
+<form action="logout.php" cmethod="post">
     <input class="button" type="submit" value="Log out">
 </form>
 

@@ -59,27 +59,33 @@ $nbAttemptCon = $row['NB_ATTEMPT_CON'];
 
 // validity = 0
 if (!$valid) {
-    $error = 'Account is disabled';
+    $error = 'Account is disabled or doesn\'t exist.';
     header("Location: login.php?error={$error}");
 
 // Wrong password
 } else if (!password_verify($password, $pwd)) {
+    $error = 'Invalid login';
 
     // Update the number of connexions attempted for the account
     if ($nbAttemptCon < 5) {
+        if($nbAttemptCon >= 2){
+            $error = 'Invalid login. ' . (5-$nbAttemptCon) . ' attempts remaining.';
+        }
+
         $stmt = $db->prepare('UPDATE ACCOUNT SET NB_ATTEMPT_CON = :nbAttemptCon WHERE USERNAME = :usr');
         $stmt->bindValue(":nbAttemptCon", ++$nbAttemptCon);
 
     } else { // Disable account if nb connexions attempted exceed 5
         $stmt = $db->prepare('UPDATE ACCOUNT SET VALIDITY = :validity WHERE USERNAME = :usr');
         $stmt->bindValue(":validity", 0);
+        $error = 'Too many failed attempts. The account is now disabled. Please contact an administrator to enable it.';
     }
 
     $stmt->bindValue(":usr", $usr);
 
     $stmt->execute();
 
-    $error = 'Invalid login';
+
     header("Location: login.php?error={$error}");
 
 // give a valid session and an admin session in case of an admin account

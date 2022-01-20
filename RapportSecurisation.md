@@ -25,7 +25,7 @@
 - [x] Code exécuté après redirection (lorsque erreur de connexion à
 - la DB)
 - [x] Quand on change de mot de passe on peut voir le mot de passe
-- [ ] Bloquer après 10 tentatives de login
+- [x] Bloquer après 10 tentatives de login
 - [x] Politique de mots de passe
   - la politique est: 
     - minimum 8 charactères;
