@@ -18,7 +18,7 @@ class DB extends SQLite3 {
 $db = new DB();
 
 if($db->lastErrorCode()) {
-    $error = $db->lastErrorMsg();
+    $error = "Database is unavailable";
     $db->close();
     header("Location: login.php?error={$error}");
     exit;

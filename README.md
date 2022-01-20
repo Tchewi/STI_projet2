@@ -1,4 +1,4 @@
-# STI_projet1
+# STI_projet2
 
 ## Installation
 
@@ -10,17 +10,16 @@ Commandes Docker :
 
 `docker exec -u root sti_project service php5-fpm start`
 
-Accéder à la page principale : http://localhost:8080/login.php
+Accéder à la page principale : [http://localhost:8080]()
 
 ## Important
 
 Il faut ajouter des permissions `read` et `write` pour other au fichier `database.sqlite`, ainsi que les permissions `read`, `write` et `execute` pour other au dossier `databases`.
 
 
-
 Un compte admin est disponible:
-* Username: Grenouille
-* Passeword: phrog
+* Username: admin
+* Password: Pass123*
 
 
-Le mot de passe pour phpliteadmin est "admin".
+Le mot de passe pour phpliteadmin est "Pass123*".

@@ -6,9 +6,10 @@ startSession();
 checkAdmin();
 
 $db = new DB();
+$error = "";
 
 if ($db->LastErrorCode()) {
-    echo $db->lastErrorMsg();
+    $error = "Database is unavailable";
 }
 else {
     verify_csrf_token();
@@ -25,8 +26,9 @@ else {
 
     if ($username = $usr) {
         header("Location: login.php");
+        exit;
     }
 }
 
-header("Location: user.php");
+header("Location: user.php?error=" . $error);
 

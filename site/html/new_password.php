@@ -2,14 +2,15 @@
 require_once("utils/session.php");
 require_once("utils/csrf.php");
 require_once("utils/db.php");
+require_once("utils/password_policy.php");
 startSession();
 checkValid();
 
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    echo $db->lastErrorMsg();
-    header("Location: change_password.php");
+    $error = "Database is unavailable";
+    header("Location: change_password.php=error=" . $error);
     exit;
 }
 verify_csrf_token();
@@ -32,8 +33,8 @@ if (!$oldpass) {
 } else if (!password_verify($oldpass, $pwdHash)) {
     echo 'wrong password';
 
-} else if (!$newpass) {
-    echo 'Empty new password';
+} else if (!checkPasswordPolicy($newpass)) {
+    echo 'Password does not match policy';
 
 } else {
 

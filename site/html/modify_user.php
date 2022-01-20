@@ -16,7 +16,7 @@ if (!$username) {
 $db = new DB();
 
 if ($db->LastErrorCode()) {
-    $error = $db->lastErrorMsg();
+    $error = "Database is unavailable";
     $db->close();
     header("Location: user.php?error={$error}");
 }
@@ -47,17 +47,17 @@ else {
 </head>
 <body>
 
-<h1>Modify <?php echo $username ?> account</h1>
+<h1>Modify <?php echo htmlspecialchars($username) ?> account</h1>
 
 <form action="new_pass_admin.php" method="post">
-    <input type="hidden" name="usr" value="<?php echo $username ?>">
+    <input type="hidden" name="usr" value="<?php echo htmlspecialchars($username) ?>">
     <input type="password" name="new_pass">
     <input type="hidden" name="token" value="<?php echo isset($_SESSION['token']) ? $_SESSION['token'] : '' ?>">
     <input class="button" type="submit" value="New password">
 </form>
 
 <form action="new_status.php" method="post">
-    <input type="hidden" name="usr" value="<?php echo $username ?>">
+    <input type="hidden" name="usr" value="<?php echo htmlspecialchars($username) ?>">
     <input type="radio" name="status" value="collaborateur">
     <label>Collaborateur</label><br>
     <input type="radio" name="status" value="admin">
@@ -67,7 +67,7 @@ else {
 </form>
 
 <form action="new_validity.php" method="post">
-    <input type="hidden" name="usr" value="<?php echo $username ?>">
+    <input type="hidden" name="usr" value="<?php echo htmlspecialchars($username) ?>">
     <input type="radio" name="validity" value="1">
     <label>Activate</label><br>
     <input type="radio" name="validity" value="0">

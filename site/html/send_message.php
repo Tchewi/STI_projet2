@@ -8,7 +8,7 @@ checkValid();
 $db = new DB();
 
 if ($db->lastErrorCode()) {
-    $error = $db->lastErrorMsg();
+    $error = "Database is unavailable";
     $db->close();
     header("Location: new_message.php?error={$error}");
     exit;
